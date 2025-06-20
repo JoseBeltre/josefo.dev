@@ -1,11 +1,16 @@
+---
+import Favicon from '../components/Favicon.astro'
+import '../styles/global.css'
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<Favicon />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>José Beltre | Desarrollador Web | JosefoDev</title>
 	</head>
 	<body>
 		<slot />
@@ -18,5 +23,6 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		color-scheme: light dark;
 	}
 </style>
