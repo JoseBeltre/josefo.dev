@@ -1,1 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+  /* Colores */
+  --color-primary: #B23247;
+  --color-primary-dark: #8B172B	;
+  --color-secondary: #638AF6;
+  --color-highlight: #BCBCBC;
+  --color-muted: #B23247;
+  --color-dark: #0E0E0E;
+  /* Fuentes */
+  --default-font-family: "IBM Plex Mono", monospace, system-ui;
+  --font-work-sans: "Work Sans", sans-serif, system-ui;
+}
+
+@layer utilities {
+  .bg-radial-primary {
+  background: #638AF6;
+background: linear-gradient(73deg, rgba(99, 138, 246, 0.59) 0%, rgba(105, 131, 233, 0.28) 25%, rgba(176, 53, 76, 0.56) 92%, rgba(178, 50, 71, 0.66) 100%);
+  }
+}
