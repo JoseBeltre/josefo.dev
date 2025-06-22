@@ -4,12 +4,32 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
 ---
 
 <header class="flex justify-between items-center w-full p-4 fixed">
-  <div class="bg-primary size-12 p-2 rounded-full">
+  <div class="bg-primary size-12 p-2 rounded-full z-10">
     <img src={Logo.src} class="w-full h-full" alt="JosefoDev Logo">
   </div>
-  <div class="grid place-content-center size-12 bg-gradient-to-r from-secondary/50 to-primary rounded-xl relative z-10 ">
-    <div class="grid place-content-center bg-[#121212] rounded-xl size-11">
+  <label for="menu" class="peer grid place-content-center size-12 bg-gradient-to-r from-secondary/50 to-primary rounded-xl relative z-10  cursor-pointer">
+    <input id="menu" class="hidden" type="checkbox">
+    <div class="grid place-content-center bg-[#121212] rounded-xl size-11 -z-10">
       <MenuIcon stroke={2} size={28} />
     </div>
+  </label>
+  <div class="absolute flex flex-col justify-center items-center gap-5 w-screen h-screen inset-0 bg-black/90 backdrop-blur-md translate-x-full peer-has-checked:translate-x-0 transition-all">
+    <a class="menu-item" href="#inicio">Inicio</a>
+    <a class="menu-item" href="#">Servicios</a>
+    <a class="menu-item" href="#">Proceso</a>
+    <a class="menu-item" href="#">Portfolio</a>
+    <a class="menu-item" href="#">Sobre mí</a>
+    <a class="menu-item" href="#">Contactame</a>
   </div>
 </header>
+
+<script>
+  const chk = document.getElementById('menu') as HTMLInputElement
+  const menuItems = document.querySelectorAll('.menu-item')
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (chk) chk.checked = false
+    })
+  });
+</script>

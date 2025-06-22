@@ -4,14 +4,12 @@ import HeroImage from '../assets/hero-image.svg'
 import Header from '../components/Header.astro'
 import Badge from '../components/Badge.astro'
 import Button from '../components/Button.astro'
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
 	<Header />
 	<main class="px-6">
-		<section id="hero-section" class="min-h-screen flex flex-col gap-2 items-center justify-center">
+		<section id="inicio" class="min-h-screen flex flex-col gap-2 items-center justify-center">
 			<div class="px-10">
 				<img src={HeroImage.src} alt="">
 			</div>
@@ -23,7 +21,7 @@ import Button from '../components/Button.astro'
 					<Button class='flex-1 bg-primary hover:bg-accent'>
 						Ver proyectos
 					</Button>
-					<Button class='flex-1 border'>
+					<Button class='flex-1 border hover:bg-white hover:text-dark'>
 						Descargar CV
 					</Button>
 				</div>

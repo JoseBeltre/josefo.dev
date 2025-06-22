@@ -16,8 +16,7 @@
 }
 
 @layer utilities {
-  .bg-radial-primary {
-  background: #638AF6;
-background: linear-gradient(73deg, rgba(99, 138, 246, 0.59) 0%, rgba(105, 131, 233, 0.28) 25%, rgba(176, 53, 76, 0.56) 92%, rgba(178, 50, 71, 0.66) 100%);
+  .menu-item {
+  @apply hover:text-transparent hover:bg-gradient-to-r hover:from-secondary hover:to-accent hover:bg-clip-text hover:font-bold hover:before:content-["{_"] hover:after:content-["_}"]
   }
 }
