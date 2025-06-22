@@ -1,0 +1,15 @@
+---
+import Logo from '../assets/logo.svg'
+import MenuIcon from '../components/icons/MenuIcon.astro'
+---
+
+<header class="flex justify-between items-center w-full p-4 fixed">
+  <div class="bg-primary size-12 p-2 rounded-full">
+    <img src={Logo.src} class="w-full h-full" alt="JosefoDev Logo">
+  </div>
+  <div class="grid place-content-center size-12 bg-gradient-to-r from-secondary/50 to-primary rounded-xl relative z-10 ">
+    <div class="grid place-content-center bg-[#121212] rounded-xl size-11">
+      <MenuIcon stroke={2} size={28} />
+    </div>
+  </div>
+</header>

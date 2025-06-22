@@ -4,7 +4,8 @@
 @theme {
   /* Colores */
   --color-primary: #B23247;
-  --color-primary-dark: #8B172B	;
+  --color-primary-dark: #8B172B;
+  --color-accent: #FF264A;
   --color-secondary: #638AF6;
   --color-highlight: #BCBCBC;
   --color-muted: #B23247;
