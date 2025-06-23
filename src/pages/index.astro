@@ -4,11 +4,13 @@ import HeroImage from '../assets/hero-image.svg'
 import Header from '../components/Header.astro'
 import Badge from '../components/Badge.astro'
 import Button from '../components/Button.astro'
+import Tag from '../components/Tag.astro'
+import LandingPageIcon from '../components/icons/LandingPageIcon.astro'
 ---
 
 <Layout>
 	<Header />
-	<main class="px-6">
+	<main class="px-6 grid gap-12 mb-100">
 		<section id="inicio" class="min-h-dvh flex flex-col gap-2 items-center justify-center">
 			<div class="px-10">
 				<img src={HeroImage.src} alt="">
@@ -22,6 +24,30 @@ import Button from '../components/Button.astro'
 					<Button class='flex-1 border hover:bg-white hover:text-dark'>Descargar CV</Button>
 				</div>
 			</div>
+		</section>
+		<section id="servicios">
+			<Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
+			<h2 class="font-work-sans text-4xl font-semibold mt-2 mb-4">Lo que puedo construir para ti.</h2>
+			<article class="bg-layer rounded-xl border border-white/20 p-5">
+				<div class="p-2 bg-accent/30 rounded-full inline-block">
+					<LandingPageIcon class='text-accent' size={36} stroke={1.5} />
+				</div>
+				<h2>
+					<Tag class='text-accent font-medium text-2xl italic'><span class="text-white ">Landing Page Profesional</span></Tag>
+				</h2>
+				<p>
+					<Tag tag='p' class='font-semibold text-highlight'>
+						<span class="font-normal text-white/70">
+							Tu sitio web de una sola página, optimizado para captar atención, comunicar tu propuesta y convertir visitantes en clientes.
+						</span>
+						<br>
+					</Tag>
+				</p>
+				<div class="mt-5 grid gap-2">
+					<Button class='flex-1 border hover:bg-white hover:text-dark'> ¿Qué incluye? </Button>
+					<Button class='flex-1 bg-primary hover:bg-accent'> Solicitar ahora </Button>
+				</div>
+			</article>
 		</section>
 	</main>
 </Layout>

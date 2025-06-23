@@ -1,0 +1,9 @@
+---
+interface Props {
+  tag?: string,
+  class?: string
+}
+
+const { tag = 'h2', class: className } = Astro.props
+---
+<span class={className}>{`<${tag}>`}<slot />{`</${tag}>`}</span>

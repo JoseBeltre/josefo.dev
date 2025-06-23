@@ -7,9 +7,10 @@
   --color-primary-dark: #8B172B;
   --color-accent: #FF264A;
   --color-secondary: #638AF6;
-  --color-highlight: #BCBCBC;
-  --color-muted: #B23247;
+  --color-highlight: #FFCD76;
+  --color-muted: #BCBCBC;
   --color-dark: #0E0E0E;
+  --color-layer: #1c1c1c;
   /* Fuentes */
   --default-font-family: "IBM Plex Mono", monospace, system-ui;
   --font-work-sans: "Work Sans", sans-serif, system-ui;
