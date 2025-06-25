@@ -1,0 +1,84 @@
+---
+import Button from './Button.astro'
+import LandingPageIcon from './icons/LandingPageIcon.astro'
+import Tag from './Tag.astro'
+---
+
+<article class="bg-layer rounded-xl border border-white/20 p-5">
+  <div class="p-2 bg-accent/30 rounded-full inline-block">
+    <LandingPageIcon class="text-accent" size={36} stroke={1.5} />
+  </div>
+
+  <h2>
+    <Tag class="text-accent font-medium text-2xl italic">
+      <span class="text-white">Landing Page Profesional</span>
+    </Tag>
+  </h2>
+
+  <p>
+    <Tag tag="p" class="font-semibold text-highlight">
+      <span class="font-normal text-white/70">
+        Tu sitio web de una sola página, optimizado para captar atención,
+        comunicar tu propuesta y convertir visitantes en clientes.
+      </span>
+    </Tag>
+  </p>
+
+  <div class="accordion mt-4 overflow-hidden">
+    <h3 class="mt-4 font-semibold italic text-highlight">Este plan incluye:</h3>
+    <ul class="space-y-4 text-base text-white/70 leading-5 px-1">
+      <li><span class="text-highlight">-</span> 1 página tipo scroll</li>
+      <li><span class="text-highlight">-</span> Diseño visual personalizado basado en tu marca</li>
+      <li><span class="text-highlight">-</span> Hasta 5 secciones (Hero, Servicios, Sobre mí, Testimonios, Contacto)</li>
+      <li><span class="text-highlight">-</span> Animaciones básicas (scroll reveal, hover, etc.)</li>
+      <li><span class="text-highlight">-</span> Formulario de contacto funcional con notificación a tu email</li>
+      <li><span class="text-highlight">-</span> Sitio 100% responsive (móvil, tablet y escritorio)</li>
+      <li><span class="text-highlight">-</span> Optimización de rendimiento y carga</li>
+      <li><span class="text-highlight">-</span> Entrega en código o publicación en hosting (opcional)</li>
+    </ul>
+  </div>
+
+  <div class="mt-5 grid gap-2">
+    <Button class="toggle-accordion flex-1 border hover:bg-white hover:text-dark">¿Qué incluye?</Button>
+    <Button class="flex-1 bg-primary hover:bg-accent">Solicitar ahora</Button>
+  </div>
+</article>
+
+<style>
+  .accordion {
+    height: 0;
+    transition: height 0.4s ease;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.toggle-accordion').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const container = btn.closest('article')
+    const accordion = container!.querySelector('.accordion') as HTMLElement
+
+    if (!accordion) return
+
+    const isOpen = accordion.classList.contains('open')
+
+    if (isOpen) {
+      accordion.style.height = accordion.scrollHeight + 'px'
+      requestAnimationFrame(() => {
+        accordion.style.height = '0px'
+        accordion.classList.remove('open')
+      })
+    } else {
+      accordion.classList.add('open')
+      accordion.style.height = accordion.scrollHeight + 'px'
+      accordion.addEventListener(
+        'transitionend',
+        () => {
+          accordion.style.height = 'auto'
+        },
+        { once: true }
+      )
+    }
+  })
+})
+
+</script>
