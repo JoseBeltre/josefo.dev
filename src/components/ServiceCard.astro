@@ -24,7 +24,7 @@ import Tag from './Tag.astro'
     </Tag>
   </p>
 
-  <div class="accordion mt-4 overflow-hidden">
+  <div class="accordion mt-4 overflow-hidden h-0 transition-[height] duration-700">
     <h3 class="mt-4 font-semibold italic text-highlight">Este plan incluye:</h3>
     <ul class="space-y-4 text-base text-white/70 leading-5 px-1">
       <li><span class="text-highlight">-</span> 1 página tipo scroll</li>
@@ -43,13 +43,6 @@ import Tag from './Tag.astro'
     <Button class="flex-1 bg-primary hover:bg-accent">Solicitar ahora</Button>
   </div>
 </article>
-
-<style>
-  .accordion {
-    height: 0;
-    transition: height 0.4s ease;
-  }
-</style>
 
 <script>
   document.querySelectorAll('.toggle-accordion').forEach((btn) => {
