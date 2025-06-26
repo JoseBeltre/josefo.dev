@@ -39,6 +39,6 @@ export const workflow: Projectid[] = [
     id: 6,
     title: 'Soporte y asesoría',
     description:
-      'Te doy seguimiento durante un tiempo (dependiendo delproyecto) por si necesitas ayuda o ajustes menores.',
+      'Te doy seguimiento durante un tiempo (dependiendo del proyecto) por si necesitas ayuda o ajustes menores.',
   },
 ]
