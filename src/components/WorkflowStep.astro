@@ -10,10 +10,8 @@ interface Props {
 const { step, title, description } = Astro.props
 ---
 
-<article class="bg-layer rounded-xl border border-white/20 p-5 relative">
+<article class="bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-accent">
   <span class="font-work-sans text-white font-semibold absolute text-5xl -left-3">{step}</span>
-    <Tag class="italic text-secondary text-xl font-medium block"><span class="text-white">{title}</span></Tag>
-    <Tag class="text-highlight font-semibold" tag='p'>
-      <span class="text-white/70 font-normal">{description}</span>
-    </Tag>
+    <h3 class="text-accent italic font-semibold text-xl leading-6">{title}</h3>
+    <p class="text-white/70 font-normal leading-5">{description}</p>
 </article>
