@@ -8,7 +8,7 @@ interface Props {
 const {
   size = 24,
   stroke = 2,
-  class: customClass = '',
+  class: className = '',
 } = Astro.props
 ---
 
@@ -22,7 +22,7 @@ const {
   stroke-width={stroke}
   stroke-linecap="round"
   stroke-linejoin="round"
-  class={`icon icon-tabler icon-tabler-ad-2 ${customClass}`}
+  class={`icon icon-tabler icon-tabler-ad-2 ${className}`}
 >
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M11.933 5h-6.933v16h13v-8" />
