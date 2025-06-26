@@ -10,8 +10,8 @@ import { services } from '../data/services'
 
 <Layout>
 	<Header />
-	<main class="px-6 grid gap-12 mb-100">
-		<section id="inicio" class="min-h-dvh flex flex-col gap-2 items-center justify-center">
+	<main class="grid gap-12 mb-100">
+		<section id="inicio" class="min-h-dvh flex flex-col gap-2 items-center justify-center px-6">
 			<div class="px-10">
 				<img src={HeroImage.src} alt="">
 			</div>
@@ -25,7 +25,7 @@ import { services } from '../data/services'
 				</div>
 			</div>
 		</section>
-		<section id="servicios">
+		<section id="servicios" class="px-6">
 			<Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
 			<h2 class="font-work-sans text-4xl font-semibold mt-2 mb-4">Lo que puedo construir para ti.</h2>
 			<div class="grid gap-4">
@@ -42,5 +42,16 @@ import { services } from '../data/services'
 				}
 			</div>
 		</section>
+		<div class="bg-layer w-full p-6 grid">
+			<h2 class="font-semibold text-2xl text-highlight">
+				¿Tienes otra idea? 🤔
+			</h2>
+			<p class="text-white/90">
+				¡Me encantaría escuchar tu propuesta!
+			</p>
+			<Button class="bg-highlight text-dark font-medium mt-4">
+				¡Cuéntame tu proyecto!
+			</Button>
+		</div>
 	</main>
 </Layout>
