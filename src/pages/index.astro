@@ -12,17 +12,28 @@ import Process from '../components/sections/Process.astro'
 	<main class="grid gap-12 mb-100">
 		<Hero />
 		<Services />
-		<div class="bg-layer w-full p-6 grid">
+		<div class="bg-layer w-full p-6 py-8 grid">
 			<h2 class="font-semibold text-2xl text-highlight">
 				¿Tienes otra idea? 🤔
 			</h2>
 			<p class="text-white/90">
 				¡Me encantaría escuchar tu propuesta!
 			</p>
-			<Button class="bg-highlight text-dark font-medium mt-4">
+			<Button class="bg-highlight text-dark font-medium mt-4 hover:bg-yellow-400">
 				¡Cuéntame tu proyecto!
 			</Button>
 		</div>
 		<Process />
+		<div class="bg-layer w-full p-6 py-8 grid">
+			<h2 class="font-semibold text-2xl text-accent leading-6">
+				¿Estás listo para comenzar? 🚀
+			</h2>
+			<p class="text-white/90">
+				¡Agenda tu primera reunión <span class="text-highlight font-medium">sin compromiso</span>!
+			</p>
+			<Button class="bg-primary mt-4 hover:bg-accent">
+				¡Cuéntame tu proyecto!
+			</Button>
+		</div>
 	</main>
 </Layout>
