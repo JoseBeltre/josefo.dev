@@ -6,6 +6,9 @@ import Badge from '../components/Badge.astro'
 import Button from '../components/Button.astro'
 import ServiceCard from '../components/ServiceCard.astro'
 import { services } from '../data/services'
+import Tag from '../components/Tag.astro'
+import { workflow } from '../data/workflow'
+import WorkflowStep from '../components/WorkflowStep.astro'
 ---
 
 <Layout>
@@ -27,7 +30,7 @@ import { services } from '../data/services'
 		</section>
 		<section id="servicios" class="px-6">
 			<Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
-			<h2 class="font-work-sans text-4xl font-semibold mt-2 mb-4">Lo que puedo construir para ti.</h2>
+			<h2 class="section-title">Lo que puedo construir para ti.</h2>
 			<div class="grid gap-4">
 				{
 					services.map((service, index) => 
@@ -53,5 +56,22 @@ import { services } from '../data/services'
 				¡Cuéntame tu proyecto!
 			</Button>
 		</div>
+		<section id="proceso" class="px-6">
+			<Badge class='bg-primary'>
+				Proceso
+			</Badge>
+			<h2 class="section-title">Así trabajaremos juntos</h2>
+			<div class="grid gap-3">
+			{
+				workflow.map(step => 
+					<WorkflowStep
+						step={step.id},
+						title={step.title},
+						description={step.description}
+					/>
+				)
+			}
+			</div>
+		</section>
 	</main>
 </Layout>
