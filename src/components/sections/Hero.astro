@@ -1,0 +1,20 @@
+---
+import HeroImage from '../../assets/hero-image.svg'
+import Badge from '../Badge.astro'
+import Button from '../Button.astro'
+---
+
+<section id="inicio" class="min-h-dvh flex flex-col gap-2 items-center justify-center px-6">
+  <div class="px-10">
+    <img src={HeroImage.src} alt="">
+  </div>
+  <div>
+    <Badge>Desarrollador Web</Badge>
+    <h1 class="font-work-sans text-5xl font-bold mt-4">José Luis Beltre</h1>
+    <p class="text-white/80 text-lg text-pretty">Apasionado por crear soluciones web <span class="bg-secondary px-2 font-medium text-white">modernas</span> y <span class="bg-secondary px-2 font-medium text-white">efectivas</span></p>
+    <div class="mt-5 flex gap-4">
+      <Button class='flex-1 bg-primary hover:bg-accent'>Ver proyectos</Button>
+      <Button class='flex-1 border hover:bg-white hover:text-dark'>Descargar CV</Button>
+    </div>
+  </div>
+</section>

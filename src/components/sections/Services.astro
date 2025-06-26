@@ -1,0 +1,23 @@
+---
+import { services } from '../../data/services';
+import Badge from '../Badge.astro';
+import ServiceCard from '../ServiceCard.astro';
+---
+
+<section id="servicios" class="px-6">
+  <Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
+  <h2 class="section-title">Lo que puedo construir para ti.</h2>
+  <div class="grid gap-4">
+    {
+      services.map((service, index) => 
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          features={service.features}
+          icon={service.icon}
+          index={index}
+        />
+      )
+    }
+  </div>
+</section>

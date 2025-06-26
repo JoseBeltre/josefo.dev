@@ -1,0 +1,23 @@
+---
+import { workflow } from '../../data/workflow';
+import Badge from '../Badge.astro';
+import WorkflowStep from '../WorkflowStep.astro';
+---
+
+<section id="proceso" class="px-6">
+  <Badge class='bg-primary'>
+    Proceso
+  </Badge>
+  <h2 class="section-title">Así trabajaremos juntos</h2>
+  <div class="grid gap-3">
+  {
+    workflow.map(step => 
+      <WorkflowStep
+        step={step.id},
+        title={step.title},
+        description={step.description}
+      />
+    )
+  }
+  </div>
+</section>

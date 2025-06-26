@@ -1,50 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import HeroImage from '../assets/hero-image.svg'
 import Header from '../components/Header.astro'
-import Badge from '../components/Badge.astro'
 import Button from '../components/Button.astro'
-import ServiceCard from '../components/ServiceCard.astro'
-import { services } from '../data/services'
-import Tag from '../components/Tag.astro'
-import { workflow } from '../data/workflow'
-import WorkflowStep from '../components/WorkflowStep.astro'
+import Hero from '../components/sections/Hero.astro'
+import Services from '../components/sections/Services.astro'
+import Process from '../components/sections/Process.astro'
 ---
 
 <Layout>
 	<Header />
 	<main class="grid gap-12 mb-100">
-		<section id="inicio" class="min-h-dvh flex flex-col gap-2 items-center justify-center px-6">
-			<div class="px-10">
-				<img src={HeroImage.src} alt="">
-			</div>
-			<div>
-				<Badge>Desarrollador Web</Badge>
-				<h1 class="font-work-sans text-5xl font-bold mt-4">José Luis Beltre</h1>
-				<p class="text-white/80 text-lg text-pretty">Apasionado por crear soluciones web <span class="bg-secondary px-2 font-medium text-white">modernas</span> y <span class="bg-secondary px-2 font-medium text-white">efectivas</span></p>
-				<div class="mt-5 flex gap-4">
-					<Button class='flex-1 bg-primary hover:bg-accent'>Ver proyectos</Button>
-					<Button class='flex-1 border hover:bg-white hover:text-dark'>Descargar CV</Button>
-				</div>
-			</div>
-		</section>
-		<section id="servicios" class="px-6">
-			<Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
-			<h2 class="section-title">Lo que puedo construir para ti.</h2>
-			<div class="grid gap-4">
-				{
-					services.map((service, index) => 
-						<ServiceCard
-							title={service.title}
-							description={service.description}
-							features={service.features}
-							icon={service.icon}
-							index={index}
-						/>
-					)
-				}
-			</div>
-		</section>
+		<Hero />
+		<Services />
 		<div class="bg-layer w-full p-6 grid">
 			<h2 class="font-semibold text-2xl text-highlight">
 				¿Tienes otra idea? 🤔
@@ -56,22 +23,6 @@ import WorkflowStep from '../components/WorkflowStep.astro'
 				¡Cuéntame tu proyecto!
 			</Button>
 		</div>
-		<section id="proceso" class="px-6">
-			<Badge class='bg-primary'>
-				Proceso
-			</Badge>
-			<h2 class="section-title">Así trabajaremos juntos</h2>
-			<div class="grid gap-3">
-			{
-				workflow.map(step => 
-					<WorkflowStep
-						step={step.id},
-						title={step.title},
-						description={step.description}
-					/>
-				)
-			}
-			</div>
-		</section>
+		<Process />
 	</main>
 </Layout>
