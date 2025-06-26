@@ -5,6 +5,7 @@ import Header from '../components/Header.astro'
 import Badge from '../components/Badge.astro'
 import Button from '../components/Button.astro'
 import ServiceCard from '../components/ServiceCard.astro'
+import { services } from '../data/services'
 ---
 
 <Layout>
@@ -28,8 +29,17 @@ import ServiceCard from '../components/ServiceCard.astro'
 			<Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
 			<h2 class="font-work-sans text-4xl font-semibold mt-2 mb-4">Lo que puedo construir para ti.</h2>
 			<div class="grid gap-4">
-				<ServiceCard />
-				<ServiceCard />
+				{
+					services.map((service, index) => 
+						<ServiceCard
+							title={service.title}
+							description={service.description}
+							features={service.features}
+							icon={service.icon}
+							index={index}
+						/>
+					)
+				}
 			</div>
 		</section>
 	</main>
