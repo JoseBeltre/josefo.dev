@@ -21,6 +21,6 @@
   @apply hover:text-transparent hover:bg-gradient-to-r hover:from-secondary hover:to-accent hover:bg-clip-text hover:font-bold hover:before:content-["{_"] hover:after:content-["_}"];
   }
   .section-title{
-    @apply font-work-sans text-4xl font-semibold mt-2 mb-4;
+    @apply font-work-sans text-4xl font-semibold mt-3 mb-4 leading-8;
   }
 }

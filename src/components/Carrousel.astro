@@ -1,0 +1,81 @@
+---
+interface Props {
+  images: string[]
+}
+
+const { images } = Astro.props
+---
+
+<div class="embla overflow-hidden relative">
+  <div class="embla__viewport">
+    <div class="embla__container flex gap-3">
+      {
+        images.map((image) => (
+          <div class="flex-[0_0_100%] aspect-[4/3] overflow-hidden">
+            <img
+              src={`/projects/${image}`}
+              class="size-full object-cover"
+              alt="Proyecto web Colmado Cesar"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div
+    class="embla__dots flex justify-center gap-2 absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none"
+  >
+    {
+      images.map((_, i) => (
+        <button
+          class="embla__dot size-2.5 rounded-full bg-white/30 transition-all pointer-events-auto"
+          style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"
+          aria-label={`Ir a la slide ${i + 1}`}
+          data-index={i}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import emblaCarrousel from 'embla-carousel'
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const emblaNode = document.querySelector('.embla__viewport') as HTMLElement
+    const dotNodes = document.querySelectorAll(
+      '.embla__dot'
+    ) as NodeListOf<HTMLElement>
+
+    if (!emblaNode) return
+
+    const embla = emblaCarrousel(emblaNode, { loop: false })
+
+    // Función para actualizar los dots
+    const updateDots = () => {
+      const selectedIndex = embla.selectedScrollSnap()
+      dotNodes.forEach((dot, index) => {
+        if (index === selectedIndex) {
+          dot.classList.remove('bg-white/30')
+          dot.classList.add('bg-accent')
+        } else {
+          dot.classList.remove('bg-white')
+          dot.classList.add('bg-white/30')
+        }
+      })
+    }
+
+    // Event listeners para los dots
+    dotNodes.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        embla.scrollTo(index)
+      })
+    })
+
+    // Actualizar dots cuando cambie el slide
+    embla.on('select', updateDots)
+
+    // Inicializar el estado de los dots
+    updateDots()
+  })
+</script>
