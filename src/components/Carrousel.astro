@@ -1,21 +1,23 @@
 ---
 interface Props {
   images: string[]
+  textAlt: string
 }
 
-const { images } = Astro.props
+const { images, textAlt } = Astro.props
+const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`
 ---
 
-<div class="embla overflow-hidden relative">
+<div class="embla overflow-hidden relative" data-carousel={carouselId}>
   <div class="embla__viewport">
-    <div class="embla__container flex gap-3">
+    <div class="embla__container flex">
       {
-        images.map((image) => (
+        images.map((image, i) => (
           <div class="flex-[0_0_100%] aspect-[4/3] overflow-hidden">
             <img
               src={`/projects/${image}`}
               class="size-full object-cover"
-              alt="Proyecto web Colmado Cesar"
+              alt={`${textAlt} - Imagen ${i + 1}`}
             />
           </div>
         ))
@@ -42,40 +44,43 @@ const { images } = Astro.props
   import emblaCarrousel from 'embla-carousel'
 
   window.addEventListener('DOMContentLoaded', () => {
-    const emblaNode = document.querySelector('.embla__viewport') as HTMLElement
-    const dotNodes = document.querySelectorAll(
-      '.embla__dot'
-    ) as NodeListOf<HTMLElement>
+    // Inicializar todos los carousels en la página
+    const carousels = document.querySelectorAll('[data-carousel]')
+    
+    carousels.forEach((carouselElement) => {
+      const emblaNode = carouselElement.querySelector('.embla__viewport') as HTMLElement
+      const dotNodes = carouselElement.querySelectorAll('.embla__dot') as NodeListOf<HTMLElement>
 
-    if (!emblaNode) return
+      if (!emblaNode) return
 
-    const embla = emblaCarrousel(emblaNode, { loop: false })
+      const embla = emblaCarrousel(emblaNode, { loop: false })
 
-    // Función para actualizar los dots
-    const updateDots = () => {
-      const selectedIndex = embla.selectedScrollSnap()
+      // Función para actualizar los dots específicos de este carousel
+      const updateDots = () => {
+        const selectedIndex = embla.selectedScrollSnap()
+        dotNodes.forEach((dot, index) => {
+          if (index === selectedIndex) {
+            dot.classList.remove('bg-white/30')
+            dot.classList.add('bg-accent')
+          } else {
+            dot.classList.remove('bg-accent')
+            dot.classList.add('bg-white/30')
+          }
+        })
+      }
+
+      // Event listeners para los dots de este carousel específico
       dotNodes.forEach((dot, index) => {
-        if (index === selectedIndex) {
-          dot.classList.remove('bg-white/30')
-          dot.classList.add('bg-accent')
-        } else {
-          dot.classList.remove('bg-white')
-          dot.classList.add('bg-white/30')
-        }
+        dot.addEventListener('click', () => {
+          embla.scrollTo(index)
+        })
       })
-    }
 
-    // Event listeners para los dots
-    dotNodes.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        embla.scrollTo(index)
-      })
+      // Actualizar dots cuando cambie el slide
+      embla.on('select', updateDots)
+
+      // Inicializar el estado de los dots
+      updateDots()
     })
-
-    // Actualizar dots cuando cambie el slide
-    embla.on('select', updateDots)
-
-    // Inicializar el estado de los dots
-    updateDots()
   })
 </script>
