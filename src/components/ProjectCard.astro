@@ -2,29 +2,30 @@
 import Carrousel from './Carrousel.astro'
 import Tag from './Tag.astro'
 
-const images = [
-  'colmado-cesar/1.jpg',
-  'colmado-cesar/2.jpg',
-  'colmado-cesar/3.jpg'
-]
+interface Props {
+  title: string,
+  projectType: string,
+  description: string,
+  goal: string,
+  images: string[]
+}
+
+const { title, projectType, description, goal, images } = Astro.props
 ---
 
 <article class="flex gap-2 flex-col">
-  <Carrousel images={images} />
+  <Carrousel images={images} textAlt=`${title}` />
   <div class="px-6">
-    <h3 class="font-work-sans text-2xl font-medium">Colmado Cesar</h3>
+    <h3 class="font-work-sans text-2xl font-medium">{title}</h3>
     <h4 class="mb-1">
       <Tag class="italic text-secondary font-medium" tag="h4"
-        ><span class="text-white">App web</span></Tag
+        ><span class="text-white">{projectType}</span></Tag
       >
     </h4>
     <p>
       <Tag class="text-accent text-sm" tag="p">
         <span class="text-white/70"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-          explicabo maxime eaque modi eum, dolorem reprehenderit! Possimus, id
-          sunt iure provident ipsum, laudantium eaque quas eveniet cumque vitae
-          natus nihil?</span
+          >{description}</span
         >
       </Tag>
     </p>
@@ -32,8 +33,7 @@ const images = [
     <p>
       <Tag class="text-accent text-sm" tag="p">
         <span class="text-white/70"
-          ><span class="text-highlight">Objetivo: </span>Lorem ipsum dolor sit
-          amet consectetur adipisicing elit.</span
+          ><span class="text-highlight">Objetivo: </span>{goal}</span
         >
       </Tag>
     </p>
