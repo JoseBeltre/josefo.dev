@@ -13,22 +13,57 @@ import Tag from '../Tag.astro';
   </p>
   <p>
     <Tag tag='p' class="text-accent font-medium">
-      <span class="text-white/80">Mi viaje en el mundo del desarrollo comenzó gracias a mi pasión por los videojuegos y mi curiosidad por la tecnología. En un principio soñaba con crear mis propios juegos, pero fue al descubrir el desarrollo web cuando encontré mi verdadera pasión: <span class="text-highlight">construir interfaces hermosas y experiencias de usuario memorables.</span></span>
+      <span class="text-white/80">Mi viaje en el mundo del desarrollo comenzó gracias a mi pasión por los videojuegos y mi curiosidad por la tecnología. En un principio soñaba con crear mis propios juegos, pero fue al descubrir el desarrollo web cuando encontré mi verdadera pasión: <span class="text-highlight">construir interfaces hermosas y experiencias de usuario memorables.</span></span> 
     </Tag>
   </p>
   <br>
-  <p>
-    <Tag tag='p' class="text-accent font-medium">
-      <span class="text-white/80"><span class="text-highlight">Me encanta trabajar de la mano con mis clientes.</span> Creo que la mejor forma de ofrecer un servicio de calidad es entendiendo a fondo lo que la otra persona necesita, escuchando sus ideas, sus intereses y sus metas.</span>
-    </Tag>
-  </p>
-  <br>
-  <p>
-    <Tag tag='p' class="text-accent font-medium">
-      <span class="text-white/80">Me encantan los proyectos innovadores, donde puedo combinar lógica y diseño para construir algo único. <span class="text-highlight">Aspiro a ser reconocido no solo por la calidad de mi trabajo, sino también por la experiencia que ofrezco.</span></span>
-    </Tag>
-  </p>
+  <div id="more-info-about" class="h-0 overflow-hidden transition-[height] duration-500">
+    <p>
+      <Tag tag='p' class="text-accent font-medium">
+        <span class="text-white/80"><span class="text-highlight">Me encanta trabajar de la mano con mis clientes.</span> Creo que la mejor forma de ofrecer un servicio de calidad es entendiendo a fondo lo que la otra persona necesita, escuchando sus ideas, sus intereses y sus metas.</span>
+      </Tag>
+    </p>
+    <br>
+    <p>
+      <Tag tag='p' class="text-accent font-medium">
+        <span class="text-white/80">Me encantan los proyectos innovadores, donde puedo combinar lógica y diseño para construir algo único. <span class="text-highlight">Aspiro a ser reconocido no solo por la calidad de mi trabajo, sino también por la experiencia que ofrezco.</span></span>
+      </Tag>
+    </p>
+  </div>
+  <button id="read-more" class="text-end underline italic ms-auto w-auto block">Leer más...</button>
   <div class="mt-7 overflow-hidden rounded-2xl shadow-2xl">
     <img src="/jose-photo.webp" alt="Foto de frente de José">
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const readMore = document.querySelector('#read-more') as HTMLElement
+  const moreInfo = document.querySelector('#more-info-about') as HTMLElement
+  console.log('ola banana')
+  if (!readMore || !moreInfo) return
+
+  readMore.addEventListener('click', () => {
+    const isOpen = moreInfo.classList.contains('open')
+
+    if (isOpen) {
+      // Cerrar
+      moreInfo.style.height = moreInfo.scrollHeight + 'px'
+      requestAnimationFrame(() => {
+        moreInfo.style.height = '0px'
+        moreInfo.classList.remove('open')
+      })
+      readMore.innerHTML = 'Leer más...'
+    } else {
+      // Abrir
+      moreInfo.classList.add('open')
+      moreInfo.style.height = moreInfo.scrollHeight + 'px'
+      readMore.innerHTML = 'Leer menos...'
+      
+      moreInfo.addEventListener('transitionend', () => {
+        moreInfo.style.height = 'auto'
+      }, { once: true })
+    }
+  })
+})
+</script>
