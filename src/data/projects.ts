@@ -37,8 +37,7 @@ export const projects: Project[] = [
     images: [
       'colmado-cesar/1.jpg',
       'colmado-cesar/2.jpg',
-      'colmado-cesar/3.jpg',
-      'colmado-cesar/4.jpg'
+      'colmado-cesar/3.jpg'
     ]
   }
 ]
