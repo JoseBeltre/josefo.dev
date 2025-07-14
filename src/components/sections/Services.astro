@@ -1,23 +1,39 @@
 ---
-import { services } from '../../data/services';
-import Badge from '../Badge.astro';
-import ServiceCard from '../ServiceCard.astro';
+import { services } from '../../data/services'
+import Badge from '../Badge.astro'
+import ServiceCard from '../ServiceCard.astro'
 ---
 
-<section id="servicios" class="px-6">
-  <Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
-  <h2 class="section-title">Lo que puedo construir para ti.</h2>
-  <div class="grid gap-4">
-    {
-      services.map((service, index) => 
-        <ServiceCard
-          title={service.title}
-          description={service.description}
-          features={service.features}
-          icon={service.icon}
-          index={index}
-        />
-      )
-    }
+<section id="servicios">
+  <div class="px-6">
+    <Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
+    <h2 class="section-title">Lo que puedo construir para ti.</h2>
+  </div>
+  <div class="embla__services overflow-hidden max-w-full">
+    <div class="embla__container__services flex">
+      {
+        services.map((service, index) => (
+          <div class="flex-[0_0_80%] mx-2">
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+              features={service.features}
+              icon={service.icon}
+              index={index}
+            />
+          </div>
+        ))
+      }
+    </div>
   </div>
 </section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel'
+  window.addEventListener('DOMContentLoaded', () => {
+    const emblaNode = document.querySelector('.embla__services') as HTMLElement
+    if (!emblaNode) return
+
+    EmblaCarousel(emblaNode, { loop: true })
+  })
+</script>
