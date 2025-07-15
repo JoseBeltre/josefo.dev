@@ -37,7 +37,6 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
   // Lógica para hacer que el menú tengaun background cuando se haga scroll
   document.body.addEventListener('scroll', () => {
     const windowScroll = document.body.scrollTop
-    console.log(windowScroll)
     if (windowScroll > 5) {
       header!.classList.add('backdrop-blur-2xl', 'bg-[#121212]/60')
     } else {
