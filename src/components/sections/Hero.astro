@@ -4,17 +4,31 @@ import Badge from '../Badge.astro'
 import Button from '../Button.astro'
 ---
 
-<section id="inicio" class="min-h-dvh flex flex-col gap-2 items-center justify-center px-6 md:flex-row-reverse md:gap-40">
+<section
+  id="inicio"
+  class="min-h-dvh flex flex-col gap-2 items-center justify-center px-6 lg:flex-row-reverse lg:gap-40"
+>
   <div class="px-10 max-w-md">
-    <img src={HeroImage.src} class="h-full w-full" alt="">
+    <img src={HeroImage.src} class="h-full w-full" alt="" />
   </div>
   <div>
     <Badge>Desarrollador Web</Badge>
-    <h1 class="font-work-sans text-5xl font-bold mt-4 leading-10 md:text-7xl md:font-semibold md:max-w-100 md:leading-15">José Luis Beltre</h1>
-    <p class="text-white/80 text-lg text-pretty md:max-w-100">Apasionado por crear soluciones web <span class="bg-secondary px-2 font-medium text-white">modernas</span> y <span class="bg-secondary px-2 font-medium text-white">efectivas</span></p>
+    <h1
+      class="font-work-sans text-5xl font-bold mt-4 leading-10 lg:text-7xl lg:font-semibold lg:max-w-100 lg:leading-15"
+    >
+      José Luis Beltre
+    </h1>
+    <p class="text-white/80 text-lg text-pretty lg:max-w-100">
+      Apasionado por crear soluciones web <span
+        class="bg-secondary px-2 font-medium text-white">modernas</span
+      > y <span class="bg-secondary px-2 font-medium text-white"
+        >efectivas</span>
+    </p>
     <div class="mt-5 flex gap-4">
-      <Button class='flex-1 bg-primary hover:bg-accent'>Ver proyectos</Button>
-      <Button class='flex-1 border hover:bg-white hover:text-dark'>Descargar CV</Button>
+      <Button class="flex-1 bg-primary hover:bg-accent">Ver proyectos</Button>
+      <Button class="flex-1 border hover:bg-white hover:text-dark"
+        >Descargar CV</Button
+      >
     </div>
   </div>
 </section>

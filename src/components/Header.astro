@@ -3,23 +3,39 @@ import Logo from '../assets/logo.svg'
 import MenuIcon from '../components/icons/MenuIcon.astro'
 ---
 
-<header class="flex justify-between items-center w-full p-4 fixed z-50 transition-all duration-500 md:bg-black md:gap-7 md:w-fit md:rounded-full md:p-2 md:text-sm md:mt-5 md:right-1/4">
-  <div class="bg-primary size-12 p-2 rounded-full z-10 md:size-10 md:p-1.5">
-    <img src={Logo.src} class="w-full h-full" alt="JosefoDev Logo">
-  </div>
-  <label for="menu" class="peer grid place-content-center size-12 bg-gradient-to-r from-secondary/50 to-primary rounded-xl relative z-10  cursor-pointer md:hidden">
-    <input id="menu" class="hidden" type="checkbox">
-    <div class="grid place-content-center bg-[#121212] rounded-xl size-11 -z-10">
-      <MenuIcon stroke={2} size={28} />
+<header
+  class="w-full p-4 fixed z-50 transition-all duration-500 lg:flex lg:justify-center"
+>
+  <div
+    class="flex justify-between items-center lg:bg-black lg:gap-7 lg:w-fit lg:rounded-full lg:p-2 lg:text-sm"
+  >
+    <div class="bg-primary size-12 p-2 rounded-full z-10 lg:size-10 lg:p-1.5">
+      <img src={Logo.src} class="w-full h-full" alt="JosefoDev Logo" />
     </div>
-  </label>
-  <div class="absolute flex flex-col justify-center items-center gap-5 w-screen h-screen inset-0 bg-black/90 backdrop-blur-md translate-x-full peer-has-checked:translate-x-0 transition- md:translate-x-0 md:backdrop-blur-none md:bg-transparent md:w-fit md:h-fit md:flex-row md:relative md:gap-1">
-    <a class="menu-item" href="#inicio">Inicio</a>
-    <a class="menu-item" href="#servicios">Servicios</a>
-    <a class="menu-item" href="#proceso">Proceso</a>
-    <a class="menu-item" href="#portfolio">Portfolio</a>
-    <a class="menu-item" href="#sobre-mi">Sobre mí</a>
-    <a class="menu-item md:bg-white md:text-black md:p-2 md:px-5 md:rounded-full md:font-semibold ms-5" href="#contacto">Contáctame</a>
+    <label
+      for="menu"
+      class="peer grid place-content-center size-12 bg-gradient-to-r from-secondary/50 to-primary rounded-xl relative z-10 cursor-pointer lg:hidden"
+    >
+      <input id="menu" class="hidden" type="checkbox" />
+      <div
+        class="grid place-content-center bg-[#121212] rounded-xl size-11 -z-10"
+      >
+        <MenuIcon stroke={2} size={28} />
+      </div>
+    </label>
+    <div
+      class="absolute flex flex-col justify-center items-center gap-5 w-screen h-screen inset-0 bg-black/90 backdrop-blur-md translate-x-full peer-has-checked:translate-x-0 transition-transform lg:translate-x-0 lg:backdrop-blur-none lg:bg-transparent lg:w-fit lg:h-fit lg:flex-row lg:relative lg:gap-1"
+    >
+      <a class="menu-item" href="#inicio">Inicio</a>
+      <a class="menu-item" href="#servicios">Servicios</a>
+      <a class="menu-item" href="#proceso">Proceso</a>
+      <a class="menu-item" href="#portfolio">Portfolio</a>
+      <a class="menu-item" href="#sobre-mi">Sobre mí</a>
+      <a
+        class="max-lg:hover:text-transparent max-lg:hover:bg-gradient-to-r max-lg:hover:from-secondary max-lg:hover:to-accent max-lg:hover:bg-clip-text hover:font-bold before:content-['{_'] after:content-['_}'] before:invisible after:invisible hover:before:visible hover:after:visible lg:bg-white lg:text-black lg:p-2 lg:px-5 lg:rounded-full lg:font-semibold lg:ms-5 lg:hover:bg-highlight lg:transition-all lg:hover:font-medium"
+        href="#contacto">Contáctame</a
+      >
+    </div>
   </div>
 </header>
 
@@ -29,13 +45,13 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
   const header = document.querySelector('header')
 
   // Lógica para abrir el menú en dispositivos móviles
-  menuItems.forEach(item => {
+  menuItems.forEach((item) => {
     item.addEventListener('click', () => {
       if (chk) chk.checked = false
     })
   })
-  // Lógica para hacer que el menú tengaun background cuando se haga scroll
-  document.body.addEventListener('scroll', () => {
+  function toggleHeaderBg() {
+    document.body.addEventListener('scroll', () => {
     const windowScroll = document.body.scrollTop
     if (windowScroll > 5) {
       header!.classList.add('backdrop-blur-2xl', 'bg-[#121212]/60')
@@ -43,4 +59,14 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
       header!.classList.remove('backdrop-blur-2xl', 'bg-[#121212]/60')
     }
   })
+  }
+  // Lógica para hacer que el menú tengaun background cuando se haga scroll
+  window.addEventListener('resize', () => {
+    if (window.innerWidth < 1035) {
+      toggleHeaderBg()
+    } else {
+      header!.classList.remove('backdrop-blur-2xl', 'bg-[#121212]/60')
+    }
+  })
+  
 </script>
