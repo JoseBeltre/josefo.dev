@@ -21,7 +21,7 @@
   @apply hover:text-transparent hover:bg-gradient-to-r hover:from-secondary hover:to-accent hover:bg-clip-text hover:font-bold before:content-["{_"] after:content-["_}"] before:invisible after:invisible hover:before:visible hover:after:visible;
   }
   .section-title{
-    @apply font-work-sans text-4xl font-semibold mt-5 mb-10 leading-8;
+    @apply font-work-sans text-4xl font-semibold mt-5 mb-10 leading-8 lg:mt-3;
   }
   section {
     @apply max-w-5xl md:mx-auto;

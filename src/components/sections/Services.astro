@@ -5,15 +5,15 @@ import ServiceCard from '../ServiceCard.astro'
 ---
 
 <section id="servicios">
-  <div class="px-6">
+  <div class="px-6 lg:px-0">
     <Badge class="bg-secondary text-dark text-medium">Servicios</Badge>
     <h2 class="section-title">Lo que puedo construir para ti.</h2>
   </div>
-  <div class="embla__services overflow-hidden max-w-full">
-    <div class="embla__container__services flex">
+  <div class="embla__services max-lg:overflow-hidden max-lg:max-w-full">
+    <div class="embla__container__services flex lg:gap-4">
       {
         services.map((service, index) => (
-          <div class="flex-[0_0_80%] mx-2">
+          <div class="max-lg:flex-[0_0_80%] max-lg:mx-2 flex-1">
             <ServiceCard
               title={service.title}
               description={service.description}
@@ -34,6 +34,16 @@ import ServiceCard from '../ServiceCard.astro'
     const emblaNode = document.querySelector('.embla__services') as HTMLElement
     if (!emblaNode) return
 
-    EmblaCarousel(emblaNode, { loop: false })
+    const isDesktop = () => window.innerWidth > 1024
+
+    const emblaOptions = {
+      loop: false,
+      active: !isDesktop(),
+      breakpoints: {
+        '(max-width: 1025px;)': { active: false }
+      }
+    }
+
+    EmblaCarousel(emblaNode, emblaOptions)
   })
 </script>
