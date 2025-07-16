@@ -4,12 +4,13 @@ import InstagramIcon from '../icons/InstagramIcon.astro'
 import GithubIcon from '../icons/GithubIcon.astro'
 import LinkedinIcon from '../icons/LinkedinIcon.astro'
 import EmailIcon from '../icons/EmailIcon.astro'
+import { Image } from 'astro:assets'
 ---
 
 <footer class="px-6 bg-black pb-10 pt-5 flex flex-col items-center gap-2">
   <div class="flex gap-2 items-center justify-center">
     <div class="size-10">
-      <img class="size-full object-cover" src={Logo.src} alt="Logo JosefoDev" />
+      <Image class="size-full object-cover" src={Logo} alt="Logo JosefoDev" />
     </div>
     <h3 class="font-work-sans text-2xl font-bold">JosefoDev</h3>
   </div>

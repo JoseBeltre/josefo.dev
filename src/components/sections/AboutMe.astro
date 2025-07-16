@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Badge from '../Badge.astro';
 import Tag from '../Tag.astro';
 ---
@@ -32,7 +33,7 @@ import Tag from '../Tag.astro';
   </div>
   <button id="read-more" class="text-end underline italic ms-auto w-auto block">Leer más...</button>
   <div class="mt-7 overflow-hidden rounded-2xl shadow-2xl">
-    <img src="/jose-photo.webp" alt="Foto de frente de José">
+    <Image src="/jose-photo.webp" width={1920} height={1280} alt="Foto de frente de José">
   </div>
 </section>
 

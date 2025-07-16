@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import Logo from '../assets/logo.svg'
 import MenuIcon from '../components/icons/MenuIcon.astro'
 ---
@@ -10,7 +11,7 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
     class="flex justify-between items-center lg:bg-black lg:gap-7 lg:w-fit lg:rounded-full lg:p-2 lg:text-sm"
   >
     <div class="bg-primary size-12 p-2 rounded-full z-10 lg:size-10 lg:p-1.5">
-      <img src={Logo.src} class="w-full h-full" alt="JosefoDev Logo" />
+      <Image src={Logo} class="w-full h-full" alt="JosefoDev Logo" />
     </div>
     <label
       for="menu"

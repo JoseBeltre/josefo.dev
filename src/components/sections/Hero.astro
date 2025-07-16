@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import HeroImage from '../../assets/hero-image.svg'
 import Badge from '../Badge.astro'
 import Button from '../Button.astro'
@@ -9,7 +10,7 @@ import Button from '../Button.astro'
   class="min-h-dvh flex flex-col gap-2 items-center justify-center px-6 lg:flex-row-reverse lg:gap-40"
 >
   <div class="px-10 max-w-md">
-    <img src={HeroImage.src} class="h-full w-full" alt="" />
+    <Image src={HeroImage} class="h-full w-full" alt="" />
   </div>
   <div>
     <Badge>Desarrollador Web</Badge>

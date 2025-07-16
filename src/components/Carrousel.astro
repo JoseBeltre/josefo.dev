@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets'
+
 interface Props {
   images: string[]
   textAlt: string
@@ -14,8 +16,10 @@ const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`
       {
         images.map((image, i) => (
           <div class="flex-[0_0_100%] aspect-[4/3] overflow-hidden">
-            <img
+            <Image
               src={`/projects/${image}`}
+              width={800}
+              height={800}
               class="size-full object-cover"
               alt={`${textAlt} - Imagen ${i + 1}`}
             />
