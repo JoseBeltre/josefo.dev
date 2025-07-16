@@ -17,7 +17,7 @@ const blue = index % 2 === 0
 
 <article
   class:list={[
-    'bg-layer rounded-xl border border-white/20 p-5 h-[500px] transition-[height,_border] flex flex-col',
+    'bg-layer rounded-xl border border-white/20 p-5 h-[500px] transition-[height,_border] duration-700 flex flex-col',
     { 'hover:border-accent': !blue },
     { 'hover:border-secondary': blue },
   ]}
@@ -106,14 +106,14 @@ const blue = index % 2 === 0
         })
         setTimeout(() => {
           btn.innerHTML = '(¿Qué incluye?)'
-        }, 800)
+        }, 700)
       } else {
         container.style.height = 'auto'
         accordion.classList.add('open')
         accordion.style.height = accordion.scrollHeight + 'px'
         setTimeout(() => {
           btn.innerHTML = '(Ver menos)'
-        }, 800)
+        }, 700)
         accordion.addEventListener(
           'transitionend',
           () => {
