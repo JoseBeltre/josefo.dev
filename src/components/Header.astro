@@ -5,10 +5,10 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
 ---
 
 <header
-  class="w-full p-4 fixed z-50 transition-all duration-500 lg:flex lg:justify-center"
+  class="w-full fixed z-50 lg:flex lg:justify-center lg:pt-4"
 >
   <div
-    class="flex justify-between items-center lg:bg-black lg:gap-7 lg:w-fit lg:rounded-full lg:p-2 lg:text-sm"
+    class="flex justify-between items-center p-4 transition-all duration-500 lg:gap-7 lg:w-fit lg:rounded-full lg:p-2 lg:text-sm lg:border lg:border-white/10"
   >
     <div class="bg-primary size-12 p-2 rounded-full z-10 lg:size-10 lg:p-1.5">
       <Image src={Logo} class="w-full h-full" alt="JosefoDev Logo" />
@@ -43,7 +43,7 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
 <script>
   const chk = document.getElementById('menu') as HTMLInputElement
   const menuItems = document.querySelectorAll('.menu-item')
-  const header = document.querySelector('header')
+  const header = document.querySelector('header div')
 
   // Lógica para abrir el menú en dispositivos móviles
   menuItems.forEach((item) => {
@@ -62,17 +62,5 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
     }
   })
   }
-
-  if (window.innerWidth < 1035) {
-      toggleHeaderBg()
-    }
-  
-  window.addEventListener('resize', () => {
-    if (window.innerWidth < 1035) {
-      toggleHeaderBg()
-    } else {
-      header!.classList.remove('backdrop-blur-2xl', 'bg-[#121212]/60')
-    }
-  })
-  
+  toggleHeaderBg()
 </script>
