@@ -24,6 +24,6 @@
     @apply font-work-sans text-4xl font-semibold mt-5 mb-10 leading-8;
   }
   section {
-    @apply max-w-5xl mx-auto;
+    @apply max-w-5xl md:mx-auto;
   }
 }

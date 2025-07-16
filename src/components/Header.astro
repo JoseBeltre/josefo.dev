@@ -51,6 +51,7 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
       if (chk) chk.checked = false
     })
   })
+  // Lógica para hacer que el menú tengaun background cuando se haga scroll
   function toggleHeaderBg() {
     document.body.addEventListener('scroll', () => {
     const windowScroll = document.body.scrollTop
@@ -61,7 +62,11 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
     }
   })
   }
-  // Lógica para hacer que el menú tengaun background cuando se haga scroll
+
+  if (window.innerWidth < 1035) {
+      toggleHeaderBg()
+    }
+  
   window.addEventListener('resize', () => {
     if (window.innerWidth < 1035) {
       toggleHeaderBg()
