@@ -16,7 +16,7 @@ import Footer from '../components/sections/Footer.astro'
 	<main class="flex flex-col max-lg:gap-26">
 		<Hero />
 		<Services />
-		<section class="bg-layer w-full p-6 py-8 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10 lg:mb-24 lg:rounded-xl lg:border lg:border-white/20 lg:py-6">
+		<section class="cta">
 			<div>
 				<h2 class="font-semibold text-2xl text-highlight">
 				¿Tienes otra idea? 🤔
@@ -30,17 +30,19 @@ import Footer from '../components/sections/Footer.astro'
 			</Button>
 		</section>
 		<Process />
-		<div class="bg-layer w-full p-6 py-8 grid">
-			<h2 class="font-semibold text-2xl text-accent leading-6 mb-1">
+		<section class="cta">
+			<div>
+				<h2 class="font-semibold text-2xl text-accent leading-6 mb-1">
 				¿Estás listo para comenzar? 🚀
 			</h2>
 			<p class="text-white/80">
 				¡Agenda tu primera reunión <span class="text-highlight font-medium">sin compromiso</span>!
 			</p>
-			<Button class="bg-primary mt-4 hover:bg-accent">
+			</div>
+			<Button class="bg-primary mt-4 hover:bg-accent md:mt-0">
 				¡Cuéntame tu proyecto!
 			</Button>
-		</div>
+		</section>
 		<Portfolio />
 		<AboutMe />
 		<Contact />

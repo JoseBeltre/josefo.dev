@@ -26,4 +26,7 @@
   section {
     @apply max-w-5xl md:mx-auto;
   }
+  .cta {
+    @apply bg-layer w-full p-6 py-8 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10 lg:mb-24 lg:rounded-xl lg:border lg:border-white/20 lg:py-6;
+  }
 }

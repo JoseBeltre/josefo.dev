@@ -8,8 +8,17 @@ interface Props {
 const { step, title, description } = Astro.props
 ---
 
-<article class="bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-highlight">
-  <span class="font-work-sans text-white font-semibold absolute text-5xl -left-3">{step}</span>
+<article class:list={[
+  'bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-highlight transition-[border]',
+  { 'col-span-2': step === 1 },
+  { 'col-span-3': step === 2 },
+  { 'col-span-3': step === 3 },
+  { 'col-span-2': step === 4 },
+  { 'col-span-2': step === 5 },
+  { 'col-span-3': step === 6 },
+  ]}
+  >
+  <span class="font-work-sans text-white font-semibold absolute text-5xl -left-3 lg:-left-2 lg:text-3xl">{step}</span>
     <h3 class="text-highlight italic font-semibold text-xl leading-6">{title}</h3>
     <p class="text-white/70 font-normal leading-5">{description}</p>
 </article>
