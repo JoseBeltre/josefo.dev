@@ -7,23 +7,28 @@ interface Props {
   projectType: string,
   description: string,
   goal: string,
-  images: string[]
+  images: string[],
+  index: number
 }
 
-const { title, projectType, description, goal, images } = Astro.props
+const { title, projectType, description, goal, images, index } = Astro.props
+const isReversed = index % 2 === 0
 ---
 
-<article class="flex gap-2 flex-col">
+<article class:list={`flex gap-2 flex-col lg:gap-10 ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
   <Carrousel images={images} textAlt=`${title}` />
-  <div class="px-6">
-    <h3 class="font-work-sans text-2xl font-medium">{title}</h3>
-    <h4 class="mb-1">
+  <div class:list={[
+    "px-6 flex-1/2 lg:px-0",
+    { 'text-end': !isReversed }
+  ]}>
+    <h3 class="font-work-sans text-2xl font-medium lg:text-4xl">{title}</h3>
+    <h4 class="mb-1 lg:mb-2">
       <Tag class="italic text-secondary font-medium" tag="h4"
         ><span class="text-white">{projectType}</span></Tag
       >
     </h4>
     <p>
-      <Tag class="text-accent text-sm" tag="p">
+      <Tag class="text-accent text-sm lg:text-base" tag="p">
         <span class="text-white/70"
           >{description}</span
         >
@@ -31,7 +36,7 @@ const { title, projectType, description, goal, images } = Astro.props
     </p>
     <br />
     <p>
-      <Tag class="text-accent text-sm" tag="p">
+      <Tag class="text-accent text-sm lg:text-base" tag="p">
         <span class="text-white/70"
           ><span class="text-highlight">Objetivo: </span>{goal}</span
         >

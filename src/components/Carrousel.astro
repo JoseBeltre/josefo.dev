@@ -10,7 +10,7 @@ const { images, textAlt } = Astro.props
 const carouselId = `carousel-${Math.random().toString(36).substr(2, 9)}`
 ---
 
-<div class="embla overflow-hidden relative" data-carousel={carouselId}>
+<div class="embla overflow-hidden relative lg:flex-1/2 lg:rounded-2xl" data-carousel={carouselId}>
   <div class="embla__viewport">
     <div class="embla__container flex">
       {

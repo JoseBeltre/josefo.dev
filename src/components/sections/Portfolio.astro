@@ -4,20 +4,21 @@ import Badge from '../Badge.astro'
 import ProjectCard from '../ProjectCard.astro'
 ---
 
-<section id="portfolio">
-  <div class="px-6">
+<section id="portfolio" class="lg:mb-24">
+  <div class="px-6 lg:px-0">
     <Badge class="bg-secondary text-dark text-medium">Portfolio</Badge>
-    <h2 class="section-title">Así se ven mis soluciones</h2>
+    <h2 class="section-title">Así se ven mis trabajos</h2>
   </div>
-  <div class="grid gap-12">
+  <div class="grid gap-12 lg:gap-19">
     {
-      projects.map(project => 
+      projects.map((project, index) => 
         <ProjectCard
           title={project.name}
           projectType={project.projectType}
           description={project.description}
           goal={project.goal}
           images={project.images}
+          index={index}
         />
       )
     }
