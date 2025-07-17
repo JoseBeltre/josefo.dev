@@ -2,8 +2,22 @@
 interface Props {
   tag?: string,
   class?: string
+  showOnMobile?: boolean
 }
 
-const { tag = 'h2', class: className } = Astro.props
+const { tag = 'h2', class: className, showOnMobile = true } = Astro.props
 ---
-<span class={className}>{`<${tag}>`}<slot />{`</${tag}>`}</span>
+
+<span class={`${className} ${showOnMobile ? 'show-mobile' : 'hide-mobile'}`}>
+  <span class="tag-open inline">{`<${tag}>`}</span><slot /><span class="tag-close inline">{`</${tag}>`}</span>
+</span>
+
+<style>
+  /* En móvil, ocultar los tags cuando showOnMobile es false */
+  @media (max-width: 1025px) {
+    .hide-mobile .tag-open,
+    .hide-mobile .tag-close {
+      display: none;
+    }
+  }
+</style>
