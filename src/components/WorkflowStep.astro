@@ -1,4 +1,6 @@
 ---
+import Tag from './Tag.astro'
+
 interface Props {
   step: number,
   title: string,
@@ -9,16 +11,16 @@ const { step, title, description } = Astro.props
 ---
 
 <article class:list={[
-  'bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-highlight transition-[border]',
-  { 'col-span-2': step === 1 },
-  { 'col-span-3': step === 2 },
-  { 'col-span-3': step === 3 },
-  { 'col-span-2': step === 4 },
-  { 'col-span-2': step === 5 },
-  { 'col-span-3': step === 6 },
+  'bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-secondary hover:bg-secondary/10 transition-[border]',
+  { 'lg:col-span-2': step === 1 },
+  { 'lg:col-span-3': step === 2 },
+  { 'lg:col-span-3': step === 3 },
+  { 'lg:col-span-2': step === 4 },
+  { 'lg:col-span-2': step === 5 },
+  { 'lg:col-span-3': step === 6 },
   ]}
   >
   <span class="font-work-sans text-white font-semibold absolute text-5xl -left-3 lg:-left-2 lg:text-3xl">{step}</span>
-    <h3 class="text-highlight italic font-semibold text-xl leading-6">{title}</h3>
+    <Tag showOnMobile={false} class='text-secondary font-semibold lg:font-medium text-lg leading-6 italic'><h3 class="lg:text-white inline">{title}</h3></Tag>
     <p class="text-white/70 font-normal leading-5">{description}</p>
 </article>
