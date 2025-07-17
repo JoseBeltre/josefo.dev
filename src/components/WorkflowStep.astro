@@ -11,7 +11,7 @@ const { step, title, description } = Astro.props
 ---
 
 <article class:list={[
-  'bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-secondary hover:bg-secondary/10 transition-[border]',
+  'bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-accent hover:bg-accent/10 transition-[border]',
   { 'lg:col-span-2': step === 1 },
   { 'lg:col-span-3': step === 2 },
   { 'lg:col-span-3': step === 3 },
@@ -21,6 +21,6 @@ const { step, title, description } = Astro.props
   ]}
   >
   <span class="font-work-sans text-white font-semibold absolute text-5xl -left-3 lg:-left-2 lg:text-3xl">{step}</span>
-    <Tag showOnMobile={false} class='text-secondary font-semibold lg:font-medium text-lg leading-6 italic'><h3 class="lg:text-white inline">{title}</h3></Tag>
+    <Tag showOnMobile={false} class='text-secondary font-semibold lg:font-medium text-lg leading-6 italic lg:text-accent'><h3 class="lg:text-white inline">{title}</h3></Tag>
     <p class="text-white/70 font-normal leading-5">{description}</p>
 </article>
