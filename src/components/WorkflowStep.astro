@@ -11,7 +11,7 @@ const { step, title, description } = Astro.props
 ---
 
 <article class:list={[
-  'bg-layer rounded-xl border border-white/20 p-5 ps-7 relative hover:border-accent hover:bg-accent/10 transition-[border]',
+  'bg-layer rounded-xl border border-white/20 p-5 ps-7 relative lg:hover:border-accent lg:hover:bg-accent/10 lg:transition-[border]',
   { 'lg:col-span-2': step === 1 },
   { 'lg:col-span-3': step === 2 },
   { 'lg:col-span-3': step === 3 },
