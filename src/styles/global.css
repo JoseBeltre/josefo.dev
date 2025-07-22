@@ -24,14 +24,14 @@
     @apply font-work-sans text-4xl font-semibold mt-5 mb-10 leading-8 lg:mt-3;
   }
   section {
-    @apply max-w-5xl md:mx-auto;
+    @apply max-w-5xl md:mx-auto xl:max-w-6xl;
   }
   .cta {
-    @apply max-w-5xl md:mx-auto bg-layer w-full p-6 py-8 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10 lg:mb-50 lg:rounded-xl lg:border lg:border-white/20 lg:py-6;
+    @apply max-w-5xl xl:max-w-6xl md:mx-auto bg-layer w-full p-6 py-8 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10 lg:mb-50 lg:rounded-xl lg:border lg:border-white/20 lg:py-6;
   }
 
   .cta-bg-customized {
-    @apply max-w-5xl md:mx-auto w-full p-6 py-8 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10 lg:mb-50 lg:rounded-xl lg:py-6;
+    @apply max-w-5xl xl:max-w-6xl md:mx-auto w-full p-6 py-8 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10 lg:mb-50 lg:rounded-xl lg:py-6;
   }
   .menu-item.selected{
     @apply font-bold text-transparent bg-gradient-to-r from-secondary to-accent bg-clip-text before:content-["{_"] after:content-["_}"] before:invisible after:invisible before:visible after:visible;
