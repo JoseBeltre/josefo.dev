@@ -18,7 +18,7 @@
 
 @layer utilities {
   .menu-item {
-  @apply hover:text-transparent hover:bg-gradient-to-r hover:from-secondary hover:to-accent hover:bg-clip-text hover:font-bold before:content-["{_"] after:content-["_}"] before:invisible after:invisible hover:before:visible hover:after:visible;
+  @apply hover:font-semibold before:content-["{_"] after:content-["_}"] before:invisible after:invisible transition-all;
   }
   .section-title{
     @apply font-work-sans text-4xl font-semibold mt-5 mb-10 leading-8 lg:mt-3;
@@ -32,5 +32,8 @@
 
   .cta-bg-customized {
     @apply max-w-5xl md:mx-auto w-full p-6 py-8 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10 lg:mb-50 lg:rounded-xl lg:py-6;
+  }
+  .menu-item.selected{
+    @apply font-bold text-transparent bg-gradient-to-r from-secondary to-accent bg-clip-text before:content-["{_"] after:content-["_}"] before:invisible after:invisible before:visible after:visible;
   }
 }
