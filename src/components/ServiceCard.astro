@@ -4,6 +4,7 @@ import Button from './Button.astro'
 import Tag from './Tag.astro'
 
 interface Props {
+  id: string,
   title: string
   description: string
   features: string[]
@@ -11,7 +12,7 @@ interface Props {
   index: number
 }
 
-const { title, description, features, icon: Icon, index } = Astro.props
+const { title, description, features, icon: Icon, index, id } = Astro.props
 const blue = index % 2 === 0
 ---
 
@@ -77,8 +78,10 @@ const blue = index % 2 === 0
       >¿Qué incluye?</Button
     >
     <Button
+      href="#contacto"
+      data-service-id={id}
       class:list={[
-        'flex-1',
+        'flex-1 service-btn',
         { 'bg-primary hover:bg-accent': !blue },
         { 'bg-secondary hover:bg-[#427eff] text-dark font-medium': blue },
       ]}>Solicitar ahora</Button
@@ -87,6 +90,8 @@ const blue = index % 2 === 0
 </article>
 
 <script>
+  import { setService } from '../utils/setService'
+
   document.querySelectorAll('.toggle-accordion').forEach((btn) => {
     btn.addEventListener('click', () => {
       const container = btn.closest('article')
@@ -124,4 +129,12 @@ const blue = index % 2 === 0
       }
     })
   })
+  document.querySelectorAll('.service-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const serviceId = btn.getAttribute('data-service-id')
+      if (!serviceId) return
+      setService(serviceId)
+    })
+  })
+  
 </script>

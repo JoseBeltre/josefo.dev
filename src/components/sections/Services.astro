@@ -15,6 +15,7 @@ import ServiceCard from '../ServiceCard.astro'
         services.map((service, index) => (
           <div class="max-lg:flex-[0_0_80%] max-lg:mx-2 flex-1">
             <ServiceCard
+              id={service.id}
               title={service.title}
               description={service.description}
               features={service.features}

@@ -1,4 +1,5 @@
 ---
+import { services } from '../../data/services'
 import Badge from '../Badge.astro'
 import Button from '../Button.astro'
 ---
@@ -39,17 +40,19 @@ import Button from '../Button.astro'
     <div class="grid lg:col-span-1">
       <label class="italic mb-2" for="name">Tipo de servicio</label>
       <select
-        class="text-sm bg-accent h-14 text-white text-medium transition-colors ps-4"
+        id="service-type"
+        class="text-sm bg-accent h-14 text-white text-medium transition-colors ps-4 focus:outline-none cursor-pointer hover:bg-accent/80"
       >
-        <option class="bg-white font-medium text-black" value="landing-page"
-          >Landing Page</option
-        >
-        <option class="bg-white font-medium text-black" value="website"
-          >Sitio web multipágina</option
-        >
-        <option class="bg-white font-medium text-black" value="dashboard"
-          >Dashboard</option
-        >
+        {
+          services.map(service => 
+            <option
+              class="bg-white font-medium text-black"
+              value={service.id}
+            >
+              {service.title}
+            </option>
+          )
+        }
         <option class="bg-white font-medium text-black" value="other"
           >Otro (Especificar en mensaje)</option
         >

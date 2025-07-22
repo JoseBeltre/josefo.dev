@@ -25,7 +25,10 @@ import Footer from '../components/sections/Footer.astro'
 				¡Me encantaría escuchar tu propuesta!
 			</p>
 			</div>
-			<Button class="bg-highlight text-dark font-medium mt-4 hover:bg-yellow-400 lg:mt-0">
+			<Button
+				class="cta-btn bg-highlight text-dark font-medium mt-4 hover:bg-yellow-400 lg:mt-0"
+				href="#contacto"
+				>
 				¡Cuéntame tu proyecto!
 			</Button>
 		</div>
@@ -39,7 +42,10 @@ import Footer from '../components/sections/Footer.astro'
 				¡Agenda tu primera reunión <span class="text-highlight font-medium">sin compromiso</span>!
 			</p>
 			</div>
-			<Button class="bg-primary hover:bg-accent lg:bg-secondary mt-4 lg:hover:bg-secondary lg:mt-0">
+			<Button
+				class="cta-btn bg-primary hover:bg-accent lg:bg-secondary mt-4 lg:hover:bg-secondary lg:mt-0"
+				href="#contacto"
+				>
 				¡Cuéntame tu proyecto!
 			</Button>
 		</div>
@@ -49,3 +55,14 @@ import Footer from '../components/sections/Footer.astro'
 		<Footer />
 	</main>
 </Layout>
+
+<script>
+	import { setService } from '../utils/setService'
+	
+	document.querySelectorAll('.cta-btn').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			setService('other')
+		})
+	})
+
+</script>
