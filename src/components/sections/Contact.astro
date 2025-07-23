@@ -77,8 +77,11 @@ import Badge from '../Badge.astro'
       <button
         id="submit-btn"
         type="submit"
-        class="flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4"
-      >
+        class="g-recaptcha flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4"
+        data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}
+        data-callback="onSubmit"
+        data-badge="inline"
+        >
         <span>(Enviar correo)</span>
         <div
           id="form-loader"
@@ -95,65 +98,81 @@ import Badge from '../Badge.astro'
     </div>
   </form>
 </section>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
+  declare global {
+    interface Window {
+      grecaptcha: any;
+      onSubmit: (token: string) => void
+    }
+  }
   import emailjs from '@emailjs/browser'
 
-  const { PUBLIC_EMAILJS_KEY, PUBLIC_SERVICE_ID, PUBLIC_TEMPLATE_ID } =
+  const { PUBLIC_EMAILJS_KEY, PUBLIC_SERVICE_ID, PUBLIC_TEMPLATE_ID, PUBLIC_RECAPTCHA_SITE_KEY } =
     import.meta.env
 
   if (!PUBLIC_EMAILJS_KEY || !PUBLIC_SERVICE_ID || !PUBLIC_TEMPLATE_ID) {
     console.error('Faltan variables de entorno de EmailJS!!!')
   }
-  // Funcion para cambiar los estilos del boton dependiendo del estado del envio
+
+  if (!PUBLIC_RECAPTCHA_SITE_KEY) {
+    console.log('Error en la SITEKEY DE RECAPTCHA')
+  }
+
   function changeBtnStyles(state: boolean | null) {
     const btn = document.getElementById('submit-btn') as HTMLButtonElement
     const btnSpan = btn.querySelector('span') as HTMLElement
     btn.disabled = true
-    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer'
-    )
-    if (state === null) {
-      // Estado de carga
+    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer')
+    if (state === null) { // null = Cargando
       btnSpan.innerText = 'Enviando...'
-    } else if (state === true) {
-      // Éxito
+    } else if (state === true) { // true = Enviado
       btnSpan.innerText = '¡Enviado correctamente!'
       btn.classList.add('bg-green-700')
-    } else {
-      // Error (state === false)
+    } else { // false = Error
       btnSpan.innerText = '🥲 Ha ocurrido un error, intente más tarde'
       btn.classList.add('bg-red-700')
     }
   }
-  // Inicializar EmailJS
+
   emailjs.init(PUBLIC_EMAILJS_KEY)
 
   const form = document.getElementById('contact-form') as HTMLFormElement
   const dateInput = document.getElementById('date') as HTMLInputElement
   const loader = document.getElementById('form-loader') as HTMLElement
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault()
-
-    // Obtener fecha actual para enviarla en el correo
-    const date = new Date().toLocaleString()
-    dateInput.value = date
-    // Activar loader
-    loader.classList.remove('hidden')
-    changeBtnStyles(null)
+  // Esta función es llamada automáticamente por reCAPTCHA V2 Invisible cuando el captcha se completa exitosamente.
+  // El token es recibido como parámetro.
+  async function onSubmit(token: string) {
     try {
-      // Enviar correo
+      dateInput.value = new Date().toLocaleString()
+      loader.classList.remove('hidden')
+      changeBtnStyles(null)
+
       const result = await emailjs.sendForm(
         PUBLIC_SERVICE_ID,
         PUBLIC_TEMPLATE_ID,
-        form
+        form,
       )
-      if (result) changeBtnStyles(true)
-      // Reiniciar formulario
-      form.reset()
+
+      if (result?.status === 200) {
+        changeBtnStyles(true)
+        form.reset()
+      } else {
+        throw new Error('Error al enviar el formulario')
+      }
     } catch (error) {
+      console.error(error)
       changeBtnStyles(false)
     } finally {
       loader.classList.add('hidden')
     }
-  })
+  }
+
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement
+  submitBtn.addEventListener('click', (e) => e.preventDefault())
+
+  // Hacer onSubmit global para que Google lo encuentre (es necesario)
+  window.onSubmit = onSubmit
 </script>
+
