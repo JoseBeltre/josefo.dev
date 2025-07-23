@@ -72,11 +72,19 @@ import Badge from '../Badge.astro'
         placeholder="Aquí puedes describir tu proyecto, dudas o un mensaje adicional que te gustaría agregar ^-^"
         rows="12"></textarea>
     </div>
-    <input id="date" name="date" class="hidden" type="text">
+    <input id="date" name="date" class="hidden" type="text" />
     <div class="grid lg:col-span-2">
-      <button id="submit-btn" type="submit" class="flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4">
+      <button
+        id="submit-btn"
+        type="submit"
+        class="flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4"
+      >
         <span>(Enviar correo)</span>
-      <div id="form-loader" class="size-5 rounded-full border-t-3 border-white animate-spin duration-100 hidden"></div>
+        <div
+          id="form-loader"
+          class="size-5 rounded-full border-t-3 border-white animate-spin duration-100 hidden"
+        >
+        </div>
       </button>
       <p class="text-white/70 text-pretty text-sm mt-2">
         O escribeme directamente ¡estoy dispuesto a responder todas tus dudas! <a
@@ -90,7 +98,8 @@ import Badge from '../Badge.astro'
 <script>
   import emailjs from '@emailjs/browser'
 
-  const { PUBLIC_EMAILJS_KEY, PUBLIC_SERVICE_ID, PUBLIC_TEMPLATE_ID } = import.meta.env
+  const { PUBLIC_EMAILJS_KEY, PUBLIC_SERVICE_ID, PUBLIC_TEMPLATE_ID } =
+    import.meta.env
 
   if (!PUBLIC_EMAILJS_KEY || !PUBLIC_SERVICE_ID || !PUBLIC_TEMPLATE_ID) {
     console.error('Faltan variables de entorno de EmailJS!!!')
@@ -98,18 +107,20 @@ import Badge from '../Badge.astro'
   // Funcion para cambiar los estilos del boton dependiendo del estado del envio
   function changeBtnStyles(state: boolean | null) {
     const btn = document.getElementById('submit-btn') as HTMLButtonElement
+    const btnSpan = btn.querySelector('span') as HTMLElement
     btn.disabled = true
-    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer')
+    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer'
+    )
     if (state === null) {
       // Estado de carga
-      btn.innerText = 'Enviando...'
+      btnSpan.innerText = 'Enviando...'
     } else if (state === true) {
       // Éxito
-      btn.innerText = '¡Enviado correctamente!'
+      btnSpan.innerText = '¡Enviado correctamente!'
       btn.classList.add('bg-green-700')
     } else {
       // Error (state === false)
-      btn.innerText = '🥲 Ha ocurrido un error, intente más tarde'
+      btnSpan.innerText = '🥲 Ha ocurrido un error, intente más tarde'
       btn.classList.add('bg-red-700')
     }
   }
@@ -129,10 +140,13 @@ import Badge from '../Badge.astro'
     // Activar loader
     loader.classList.remove('hidden')
     changeBtnStyles(null)
-    setTimeout(async () => {
-      try {
+    try {
       // Enviar correo
-      const result = await emailjs.sendForm(PUBLIC_SERVICE_ID, PUBLIC_TEMPLATE_ID, form)
+      const result = await emailjs.sendForm(
+        PUBLIC_SERVICE_ID,
+        PUBLIC_TEMPLATE_ID,
+        form
+      )
       if (result) changeBtnStyles(true)
       // Reiniciar formulario
       form.reset()
@@ -141,6 +155,5 @@ import Badge from '../Badge.astro'
     } finally {
       loader.classList.add('hidden')
     }
-    }, 3000);
   })
 </script>
