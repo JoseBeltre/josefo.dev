@@ -1,18 +1,19 @@
 ---
 import { services } from '../../data/services'
 import Badge from '../Badge.astro'
-import Button from '../Button.astro'
 ---
 
 <section id="contacto" class="px-6 lg:px-0 lg:w-5xl lg:mb-20 xl:w-6xl">
   <Badge>Contacto</Badge>
   <h2 class="section-title">¿Tienes una idea de proyecto? ¡Conéctemos!</h2>
-  <form class="grid gap-5 lg:grid-cols-2">
+  <form id="contact-form" class="grid gap-5 lg:grid-cols-2">
     <div class="grid lg:col-span-2">
-      <label class="italic mb-2" for="name"
+      <label class="italic mb-2" for="client_name"
         >Tu nombre completo o el de tu negocio</label
       >
       <input
+        id="client_name"
+        name="client_name"
         class="text-sm border font-light p-4 border-white focus:border-accent focus:outline-none transition-colors"
         type="text"
         placeholder="ej. Pedro Marte o Mariano's Trattoria"
@@ -20,17 +21,22 @@ import Button from '../Button.astro'
       />
     </div>
     <div class="grid lg:col-span-2">
-      <label class="italic mb-2" for="name">Tu correo electrónico</label>
+      <label class="italic mb-2" for="client_email">Tu correo electrónico</label
+      >
       <input
+        id="client_email"
+        name="client_email"
         class="text-sm border font-light p-4 border-white focus:border-accent focus:outline-none transition-colors"
         type="email"
-        placeholder="ej. jose@josefodev.com"
+        placeholder="ej. jose@jose-web.com"
         required
       />
     </div>
     <div class="grid lg:col-span-1">
-      <label class="italic mb-2" for="name">Tipo de negocio</label>
+      <label class="italic mb-2" for="industry">Tipo de negocio</label>
       <input
+        id="industry"
+        name="industry"
         class="text-sm border font-light p-4 border-white focus:border-accent focus:outline-none transition-colors"
         type="text"
         placeholder="ej. Barbería, Pizzería, Dealer..."
@@ -38,20 +44,19 @@ import Button from '../Button.astro'
       />
     </div>
     <div class="grid lg:col-span-1">
-      <label class="italic mb-2" for="name">Tipo de servicio</label>
+      <label class="italic mb-2" for="service_type">Tipo de servicio</label>
       <select
-        id="service-type"
+        id="service_type"
+        name="service_type"
         class="text-sm bg-accent h-14 text-white text-medium transition-colors ps-4 focus:outline-none cursor-pointer hover:bg-accent/80"
+        required
       >
         {
-          services.map(service => 
-            <option
-              class="bg-white font-medium text-black"
-              value={service.id}
-            >
+          services.map((service) => (
+            <option class="bg-white font-medium text-black" value={service.id}>
               {service.title}
             </option>
-          )
+          ))
         }
         <option class="bg-white font-medium text-black" value="other"
           >Otro (Especificar en mensaje)</option
@@ -59,19 +64,83 @@ import Button from '../Button.astro'
       </select>
     </div>
     <div class="grid lg:col-span-2">
-      <label class="italic mb-2" for="name">Describe tu proyecto</label>
+      <label class="italic mb-2" for="message">Describe tu proyecto</label>
       <textarea
+        id="message"
+        name="message"
         class="text-sm border font-light p-4 border-white focus:border-accent focus:outline-none transition-colors"
         placeholder="Aquí puedes describir tu proyecto, dudas o un mensaje adicional que te gustaría agregar ^-^"
         rows="12"></textarea>
     </div>
+    <input id="date" name="date" class="hidden" type="text">
     <div class="grid lg:col-span-2">
-      <Button class="bg-accent flex-1">Enviar correo</Button>
+      <button id="submit-btn" type="submit" class="flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4">
+        <span>(Enviar correo)</span>
+      <div id="form-loader" class="size-5 rounded-full border-t-3 border-white animate-spin duration-100 hidden"></div>
+      </button>
       <p class="text-white/70 text-pretty text-sm mt-2">
         O escribeme directamente ¡estoy dispuesto a responder todas tus dudas! <a
           class="text-white underline"
-          href="mailto:contact@jose-web.com">contact@jose-web.com</a>
+          href="mailto:contact@jose-web.com">contact@jose-web.com</a
+        >
       </p>
     </div>
   </form>
 </section>
+<script>
+  import emailjs from '@emailjs/browser'
+
+  const { PUBLIC_EMAILJS_KEY, PUBLIC_SERVICE_ID, PUBLIC_TEMPLATE_ID } = import.meta.env
+
+  if (!PUBLIC_EMAILJS_KEY || !PUBLIC_SERVICE_ID || !PUBLIC_TEMPLATE_ID) {
+    console.error('Faltan variables de entorno de EmailJS!!!')
+  }
+  // Funcion para cambiar los estilos del boton dependiendo del estado del envio
+  function changeBtnStyles(state: boolean | null) {
+    const btn = document.getElementById('submit-btn') as HTMLButtonElement
+    btn.disabled = true
+    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer')
+    if (state === null) {
+      // Estado de carga
+      btn.innerText = 'Enviando...'
+    } else if (state === true) {
+      // Éxito
+      btn.innerText = '¡Enviado correctamente!'
+      btn.classList.add('bg-green-700')
+    } else {
+      // Error (state === false)
+      btn.innerText = '🥲 Ha ocurrido un error, intente más tarde'
+      btn.classList.add('bg-red-700')
+    }
+  }
+  // Inicializar EmailJS
+  emailjs.init(PUBLIC_EMAILJS_KEY)
+
+  const form = document.getElementById('contact-form') as HTMLFormElement
+  const dateInput = document.getElementById('date') as HTMLInputElement
+  const loader = document.getElementById('form-loader') as HTMLElement
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    // Obtener fecha actual para enviarla en el correo
+    const date = new Date().toLocaleString()
+    dateInput.value = date
+    // Activar loader
+    loader.classList.remove('hidden')
+    changeBtnStyles(null)
+    setTimeout(async () => {
+      try {
+      // Enviar correo
+      const result = await emailjs.sendForm(PUBLIC_SERVICE_ID, PUBLIC_TEMPLATE_ID, form)
+      if (result) changeBtnStyles(true)
+      // Reiniciar formulario
+      form.reset()
+    } catch (error) {
+      changeBtnStyles(false)
+    } finally {
+      loader.classList.add('hidden')
+    }
+    }, 3000);
+  })
+</script>

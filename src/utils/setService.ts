@@ -1,4 +1,4 @@
 export function setService(id: string) {
-    const select = document.getElementById('service-type') as HTMLSelectElement
+    const select = document.getElementById('service_type') as HTMLSelectElement
     select.value = id
 }
