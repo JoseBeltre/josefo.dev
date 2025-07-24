@@ -80,7 +80,6 @@ import Badge from '../Badge.astro'
         class="g-recaptcha flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4"
         data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}
         data-callback="onSubmit"
-        data-badge="inline"
         >
         <span>(Enviar correo)</span>
         <div
@@ -98,6 +97,11 @@ import Badge from '../Badge.astro'
     </div>
   </form>
 </section>
+<style is:global>
+  .grecaptcha-badge{
+    visibility: hidden !important;
+  }
+</style>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
   declare global {
@@ -116,7 +120,7 @@ import Badge from '../Badge.astro'
   }
 
   if (!PUBLIC_RECAPTCHA_SITE_KEY) {
-    console.log('Error en la SITEKEY DE RECAPTCHA')
+    console.error('Error en la SITEKEY DE RECAPTCHA')
   }
 
   function changeBtnStyles(state: boolean | null) {
@@ -134,7 +138,7 @@ import Badge from '../Badge.astro'
       btn.classList.add('bg-red-700')
     }
   }
-
+  // Inicializar EmailJS
   emailjs.init(PUBLIC_EMAILJS_KEY)
 
   const form = document.getElementById('contact-form') as HTMLFormElement

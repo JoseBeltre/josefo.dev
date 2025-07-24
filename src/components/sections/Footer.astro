@@ -7,7 +7,7 @@ import EmailIcon from '../icons/EmailIcon.astro'
 import { Image } from 'astro:assets'
 ---
 
-<footer class="px-6 bg-black pb-10 pt-5 flex flex-col items-center gap-2">
+<footer class="px-6 bg-black pt-5 pb-3 flex flex-col items-center gap-2">
   <div class="flex flex-col items-center justify-center lg:flex-row lg:w-5xl lg:gap-20">
     <div class="flex gap-2 items-center justify-center">
       <div class="size-10">
@@ -35,5 +35,9 @@ import { Image } from 'astro:assets'
       >
     </div>
   </div>
-  <p class="text-sm mt-2">Desarrollada con ❤️ por José Beltre.</p>
+  <p class="text-sm mt-2 font-work-sans">Desarrollada con ❤️ por <span class="font-semibold">José Beltre</span>.</p>
+  <p class="text-[10px] leading-3 text-white/70 mb-2 italic text-center">Este sitio está protegido por reCAPTCHA y la
+    <a class="text-white underline" href="https://policies.google.com/privacy">Política de Privacidad</a> y los
+    <a class="text-white underline" href="https://policies.google.com/terms">Términos de Servicio</a> de Google.
+  </p>
 </footer>
