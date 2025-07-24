@@ -1,10 +1,11 @@
 ---
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
-import Button from './Button.astro'
+import LinkButton from './LinkButton.astro'
 import Tag from './Tag.astro'
+import Button from './Button.astro'
 
 interface Props {
-  id: string,
+  id: string
   title: string
   description: string
   features: string[]
@@ -75,16 +76,16 @@ const blue = index % 2 === 0
   <div class="mt-auto grid gap-2 w-full h-fit">
     <Button
       class="toggle-accordion flex-1 border hover:bg-white hover:text-dark mt-5"
-      >¿Qué incluye?</Button
+      >¿Qué incluye?</B
     >
-    <Button
+    <LinkButton
       href="#contacto"
       data-service-id={id}
       class:list={[
         'flex-1 service-btn',
         { 'bg-primary hover:bg-accent': !blue },
         { 'bg-secondary hover:bg-[#427eff] text-dark font-medium': blue },
-      ]}>Solicitar ahora</Button
+      ]}>Solicitar ahora</LinkButton
     >
   </div>
 </article>
@@ -129,12 +130,11 @@ const blue = index % 2 === 0
       }
     })
   })
-  document.querySelectorAll('.service-btn').forEach(btn => {
+  document.querySelectorAll('.service-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const serviceId = btn.getAttribute('data-service-id')
       if (!serviceId) return
       setService(serviceId)
     })
   })
-  
 </script>

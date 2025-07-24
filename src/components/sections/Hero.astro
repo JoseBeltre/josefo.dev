@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 import HeroImage from '../../assets/hero-image.svg'
 import Badge from '../Badge.astro'
-import Button from '../Button.astro'
+import LinkButton from '../LinkButton.astro'
 ---
 
 <section
@@ -13,7 +13,7 @@ import Button from '../Button.astro'
     <Image src={HeroImage} class="h-full w-full" alt="" />
   </div>
   <div>
-    <Badge class='border-accent'>Desarrollador Web</Badge>
+    <Badge class="border-accent">Desarrollador Web</Badge>
     <h1
       class="font-work-sans text-5xl font-bold mt-4 leading-10 lg:text-7xl lg:font-semibold lg:max-w-100 lg:leading-15"
     >
@@ -22,13 +22,17 @@ import Button from '../Button.astro'
     <p class="text-white/80 text-lg text-pretty lg:max-w-100">
       Apasionado por crear soluciones web <span
         class="bg-secondary px-2 font-medium text-white">modernas</span
-      > y <span class="bg-secondary px-2 font-medium text-white"
-        >efectivas</span>
+      > y <span class="bg-secondary px-2 font-medium text-white">efectivas</span
+      >
     </p>
     <div class="mt-5 flex gap-4">
-      <Button href="#portfolio" class="flex-1 bg-primary hover:bg-accent">Ver proyectos</Button>
-      <Button href="/jose-cv.pdf" class="flex-1 border hover:bg-white hover:text-dark"
-        >Descargar CV</Button
+      <LinkButton href="#portfolio" class="flex-1 bg-primary hover:bg-accent"
+        >Ver proyectos</LinkButton
+      >
+      <LinkButton
+        href="/jose-cv.pdf"
+        class="flex-1 border hover:bg-white hover:text-dark"
+        >Descargar CV</LinkButton
       >
     </div>
   </div>

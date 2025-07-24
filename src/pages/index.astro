@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
-import Button from '../components/Button.astro'
+import LinkButton from '../components/LinkButton.astro'
 import Hero from '../components/sections/Hero.astro'
 import Services from '../components/sections/Services.astro'
 import Process from '../components/sections/Process.astro'
@@ -12,57 +12,64 @@ import Footer from '../components/sections/Footer.astro'
 ---
 
 <Layout>
-	<Header />
-	<main class="flex flex-col max-lg:gap-26">
-		<Hero />
-		<Services />
-		<div class="cta-bg-customized bg-layer lg:border lg:bg-highlight/10 lg:border-highlight/60">
-			<div>
-				<h2 class="font-semibold text-2xl text-highlight ">
-				¿Tienes otra idea? 🤔
-			</h2>
-			<p class="text-white/90 lg:text-white">
-				¡Me encantaría escuchar tu propuesta!
-			</p>
-			</div>
-			<Button
-				class="cta-btn bg-highlight text-dark font-medium mt-4 hover:bg-yellow-400 lg:mt-0"
-				href="#contacto"
-				>
-				¡Cuéntame tu proyecto!
-			</Button>
-		</div>
-		<Process />
-		<div class="cta-bg-customized bg-layer lg:bg-secondary/10 lg:border lg:border-secondary">
-			<div>
-				<h2 class="font-semibold text-2xl text-accent leading-6 mb-1 lg:text-secondary">
-				¿Estás listo para comenzar? 🚀
-			</h2>
-			<p class="text-white/80 lg:text-white">
-				¡Agenda tu primera reunión <span class="text-highlight font-medium">sin compromiso</span>!
-			</p>
-			</div>
-			<Button
-				class="cta-btn bg-primary hover:bg-accent lg:bg-secondary mt-4 lg:hover:bg-secondary lg:mt-0"
-				href="#contacto"
-				>
-				¡Cuéntame tu proyecto!
-			</Button>
-		</div>
-		<Portfolio />
-		<AboutMe />
-		<Contact />
-		<Footer />
-	</main>
+  <Header />
+  <main class="flex flex-col max-lg:gap-26">
+    <Hero />
+    <Services />
+    <div
+      class="cta-bg-customized bg-layer lg:border lg:bg-highlight/10 lg:border-highlight/60"
+    >
+      <div>
+        <h2 class="font-semibold text-2xl text-highlight">
+          ¿Tienes otra idea? 🤔
+        </h2>
+        <p class="text-white/90 lg:text-white">
+          ¡Me encantaría escuchar tu propuesta!
+        </p>
+      </div>
+      <LinkButton
+        class="cta-btn bg-highlight text-dark font-medium mt-4 hover:bg-yellow-400 lg:mt-0"
+        href="#contacto"
+      >
+        ¡Cuéntame tu proyecto!
+      </LinkButton>
+    </div>
+    <Process />
+    <div
+      class="cta-bg-customized bg-layer lg:bg-secondary/10 lg:border lg:border-secondary"
+    >
+      <div>
+        <h2
+          class="font-semibold text-2xl text-accent leading-6 mb-1 lg:text-secondary"
+        >
+          ¿Estás listo para comenzar? 🚀
+        </h2>
+        <p class="text-white/80 lg:text-white">
+          ¡Agenda tu primera reunión <span class="text-highlight font-medium"
+            >sin compromiso</span
+          >!
+        </p>
+      </div>
+      <LinkButton
+        class="cta-btn bg-primary hover:bg-accent lg:bg-secondary mt-4 lg:hover:bg-secondary lg:mt-0"
+        href="#contacto"
+      >
+        ¡Cuéntame tu proyecto!
+      </LinkButton>
+    </div>
+    <Portfolio />
+    <AboutMe />
+    <Contact />
+    <Footer />
+  </main>
 </Layout>
 
 <script>
-	import { setService } from '../utils/setService'
-	
-	document.querySelectorAll('.cta-btn').forEach((btn) => {
-		btn.addEventListener('click', () => {
-			setService('other')
-		})
-	})
+  import { setService } from '../utils/setService'
 
+  document.querySelectorAll('.cta-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      setService('other')
+    })
+  })
 </script>
