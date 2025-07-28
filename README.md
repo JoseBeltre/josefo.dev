@@ -1,11 +1,5 @@
 <img src="/public/web-img.jpg" alt="Foto de portada" />
 
-<p align="center">
-  <img src="public/favicon/favicon-96x96.png" alt="Logo JosefoDev" width="40" />
-  <span style="font-size: 2rem; font-weight: bold; margin-left: 10px;">JosefoDev</span>
-</p>
-
-
 **👋 Hola**  
 Este es mi espacio en la web donde muestro lo que hago como desarrollador.  
 Aquí comparto mis proyectos, mi estilo de trabajo y un poco de mi camino en el mundo del desarrollo.  
