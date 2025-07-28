@@ -1,48 +1,42 @@
-# Astro Starter Kit: Basics
+[<img src="/public/web-img.jpg" alt="Foto de portada" />]
+# JosefoDev – Mi Portafolio Web
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+**👋 Hola**  
+Este es mi espacio en la web donde muestro lo que hago como desarrollador.  
+Aquí comparto mis proyectos, mi estilo de trabajo y un poco de mi camino en el mundo del desarrollo.  
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 ¿Qué encontrarás aquí?  
+- **Diseño adaptable** → Funciona genial en móvil, tablet o escritorio  
+- **Estilo moderno** → Animaciones sutiles y navegación fluida  
+- **Proyectos y diseños** → Ejemplos reales de lo que puedo construir  
+- **Contacto directo** → Un formulario sencillo para que podamos hablar  
+- **Buen rendimiento** → Optimizado para cargar rápido y verse bien  
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+---
 
-## 🚀 Project Structure
+## 🛠️ Tecnologías  
+- **Astro** – Base del proyecto  
+- **TailwindCSS** – Estilos y diseño responsive  
+- **Embla Carousel** – Carruseles interactivos  
+- **EmailJS** – Envío de mensajes y notificaciones  
+- **RECAPTCHA** - Protección contra bots
+- **Sharp** – Optimización de imágenes  
 
-Inside of your Astro project, you'll see the following folders and files:
+---
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### Nota:
+Este proyecto está pensado para crecer conmigo. A medida que voy avanzando iré agregando proyectos y mejoras.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+### 🔗 Encuéntrame en la web
+- [LinkedIn](https://www.linkedin.com/in/jos%C3%A9-luis-beltre-cordero-94a3972a7/)
+- [Email](mailto:552006jose@gmail.com)
+- [Portfolio](https://www.josefo.dev)
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### 📜 Licencia
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
