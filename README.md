@@ -23,7 +23,7 @@ Aquí comparto mis proyectos, mi estilo de trabajo y un poco de mi camino en el 
 - **Sharp** – Optimización de imágenes  
 
 
-### Nota:
+### 📝 Nota:
 Este proyecto está pensado para crecer conmigo. A medida que voy avanzando iré agregando proyectos y mejoras.
 
 
@@ -31,6 +31,7 @@ Este proyecto está pensado para crecer conmigo. A medida que voy avanzando iré
 [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />](https://www.linkedin.com/in/jos%C3%A9-luis-beltre-cordero-94a3972a7/)
 [<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />](mailto:552006jose@gmail.com)
 [<img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=github&logoColor=white" alt="Portfolio" />](https://www.jose-web.com)
+[<img src="https://img.shields.io/badge/Instagram-c078dc?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />](https://instagram.com/josefo.dev)
 
 ### 📜 Licencia
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT.
