@@ -58,9 +58,7 @@ import Badge from '../Badge.astro'
             </option>
           ))
         }
-        <option class="bg-white font-medium text-black" value="other"
-          >Otro (Especificar en mensaje)</option
-        >
+        <option class="bg-white font-medium text-black" value="other">Otro (Especificar en mensaje)</option>
       </select>
     </div>
     <div class="grid lg:col-span-2">
@@ -70,17 +68,20 @@ import Badge from '../Badge.astro'
         name="message"
         class="text-sm border font-light p-4 border-white focus:border-accent focus:outline-none transition-colors"
         placeholder="Aquí puedes describir tu proyecto, dudas o un mensaje adicional que te gustaría agregar ^-^"
-        rows="12"></textarea>
+        rows="12"
+        required
+        >
+      </textarea>
     </div>
     <input id="date" name="date" class="hidden" type="text" />
     <div class="grid lg:col-span-2">
       <button
         id="submit-btn"
-        type="submit"
-        class="g-recaptcha flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4"
-        data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}
-        data-callback="onSubmit"
+        type="button"
+        class="flex flex-row-reverse items-center justify-center py-3 px-6 text-sm cursor-pointer hover:scale-105 transition-all hover:tracking-wider bg-accent flex-1 gap-4"
+        aria-label="Enviar formulario de contacto"
       >
+      <div id="grecaptcha-wrapper"></div>
         <span>(Enviar correo)</span>
         <div
           id="form-loader"
@@ -102,12 +103,13 @@ import Badge from '../Badge.astro'
     visibility: hidden !important;
   }
 </style>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
 <script>
   declare global {
     interface Window {
       grecaptcha: any
       onSubmit: (token: string) => void
+      onRecaptchaLoad: () => void
     }
   }
   import emailjs from '@emailjs/browser'
@@ -126,69 +128,119 @@ import Badge from '../Badge.astro'
   if (!PUBLIC_RECAPTCHA_SITE_KEY) {
     console.error('Error en la SITEKEY DE RECAPTCHA')
   }
+  let widgetId: any
+  function onRecaptchaLoad() {
+  try {
+    widgetId = window.grecaptcha.render('grecaptcha-wrapper', {
+      sitekey: PUBLIC_RECAPTCHA_SITE_KEY,
+      size: 'invisible',
+      callback: window.onSubmit,
+      'error-callback': function() {
+        console.error('Error en reCAPTCHA')
+        alert('Error al cargar reCAPTCHA. Por favor, intenta de nuevo.')
+      }
+    })
+  } catch (error) {
+    console.error('Error al inicializar reCAPTCHA:', error)
+  }
+}
 
   function changeBtnStyles(state: boolean | null) {
-    const btn = document.getElementById('submit-btn') as HTMLButtonElement
-    const btnSpan = btn.querySelector('span') as HTMLElement
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement
+  const btnSpan = btn.querySelector('span') as HTMLElement
+  
+  if (state === null) {
+    // null = Cargando
     btn.disabled = true
-    btn.classList.remove(
-      'hover:scale-105',
-      'hover:tracking-wider',
-      'cursor-pointer'
-    )
-    if (state === null) {
-      // null = Cargando
-      btnSpan.innerText = 'Enviando...'
-    } else if (state === true) {
-      // true = Enviado
-      btnSpan.innerText = '¡Enviado correctamente!'
-      btn.classList.add('bg-green-700')
-    } else {
-      // false = Error
-      btnSpan.innerText = '🥲 Ha ocurrido un error, intente más tarde'
-      btn.classList.add('bg-red-700')
-    }
+    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer')
+    btnSpan.innerText = 'Enviando...'
+  } else if (state === true) {
+    // true = Enviado
+    btn.disabled = true
+    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer')
+    btn.classList.add('bg-green-700')
+    btnSpan.innerText = '¡Enviado correctamente!'
+  } else {
+    // false = Error
+    btn.disabled = true
+    btn.classList.remove('hover:scale-105', 'hover:tracking-wider', 'cursor-pointer')
+    btn.classList.add('bg-red-700')
+    btnSpan.innerText = '🥲 Ha ocurrido un error, intente más tarde'
   }
+}
+
   // Inicializar EmailJS
   emailjs.init(PUBLIC_EMAILJS_KEY)
 
   const form = document.getElementById('contact-form') as HTMLFormElement
   const dateInput = document.getElementById('date') as HTMLInputElement
   const loader = document.getElementById('form-loader') as HTMLElement
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement
+
 
   // Esta función es llamada automáticamente por reCAPTCHA V2 Invisible cuando el captcha se completa exitosamente.
   // El token es recibido como parámetro.
   async function onSubmit(token: string) {
-    try {
-      dateInput.value = new Date().toLocaleString()
-      loader.classList.remove('hidden')
-      changeBtnStyles(null)
+  try {
+    dateInput.value = new Date().toLocaleString()
+    loader.classList.remove('hidden')
+    changeBtnStyles(null) // Estado de carga
 
-      const result = await emailjs.sendForm(
-        PUBLIC_SERVICE_ID,
-        PUBLIC_TEMPLATE_ID,
-        form
-      )
+    const result = await emailjs.sendForm(
+      PUBLIC_SERVICE_ID,
+      PUBLIC_TEMPLATE_ID,
+      form
+    )
 
-      if (result?.status === 200) {
-        changeBtnStyles(true)
-        form.reset()
-      } else {
-        throw new Error('Error al enviar el formulario')
-      }
-    } catch (error) {
-      console.error(error)
-      changeBtnStyles(false)
-    } finally {
-      loader.classList.add('hidden')
+    if (result?.status === 200) {
+      changeBtnStyles(true) // Estado de éxito
+      form.reset()
+    } else {
+      throw new Error('Error al enviar el formulario')
+    }
+  } catch (error) {
+    console.error('Error en onSubmit:', error)
+    changeBtnStyles(false) // Estado de error
+    
+    // Resetear reCAPTCHA en caso de error para permitir otro intento
+    if (widgetId !== undefined) {
+      window.grecaptcha.reset(widgetId)
+    }
+  } finally {
+    loader.classList.add('hidden')
+    
+    // Remover el token input si se agregó
+    const tokenInput = form.querySelector('input[name="recaptcha_token"]')
+    if (tokenInput) {
+      tokenInput.remove()
     }
   }
+}
 
-  const submitBtn = document.getElementById(
-    'submit-btn'
-  ) as HTMLButtonElement
-  submitBtn.addEventListener('click', (e) => e.preventDefault())
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    
+    // Primero validar el formulario
+    if (!form.checkValidity()) {
+      form.reportValidity()
+      return // Salir si la validación falla
+    }
+    
+    // Si el formulario es válido, verificar reCAPTCHA
+    if (widgetId !== undefined && window.grecaptcha) {
+      try {
+        window.grecaptcha.execute(widgetId)
+      } catch (error) {
+        console.error('Error al ejecutar reCAPTCHA:', error)
+        alert('Error al cargar el captcha. Por favor, recarga la página.')
+      }
+    } else {
+      console.error('reCAPTCHA no está cargado correctamente')
+      alert('Error: reCAPTCHA no está disponible. Por favor, recarga la página.')
+    }
+})
 
-  // Hacer onSubmit global para que Google lo encuentre (es necesario)
+  // Hacer onSubmit y onRecaptchaLoad global para que Google lo encuentre (es necesario)
   window.onSubmit = onSubmit
+  window.onRecaptchaLoad = onRecaptchaLoad
 </script>
