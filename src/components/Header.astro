@@ -4,7 +4,7 @@ import Logo from '../assets/logo.svg'
 import MenuIcon from '../components/icons/MenuIcon.astro'
 ---
 
-<header class="w-full fixed z-50 lg:flex lg:justify-center lg:pt-4">
+<header id="header" class="w-full fixed z-50 lg:flex lg:justify-center lg:pt-4">
   <div
     class="flex justify-between items-center p-4 transition-all duration-500 lg:gap-7 lg:w-fit lg:rounded-full lg:p-2 lg:text- lg:border lg:border-white/10"
   >
@@ -44,7 +44,9 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
   const header = document.querySelector('header div')
   let prevSelected: HTMLLinkElement | null = null
   const sections = document.querySelectorAll('section')
-  const headerLinks = document.querySelectorAll('.menu-item') as NodeListOf<HTMLLinkElement>
+  const headerLinks = document.querySelectorAll(
+    '.menu-item'
+  ) as NodeListOf<HTMLLinkElement>
 
   // Lógica para abrir el menú en dispositivos móviles
   menuItems.forEach((item) => {
@@ -65,11 +67,12 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
   }
   toggleHeaderBg()
 
+  // Lógica para resaltar el enlace del menú según la sección visible usando IntersectionObserver
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          headerLinks.forEach(link => {
+          headerLinks.forEach((link) => {
             const linkId = link.getAttribute('href')?.slice(1)
             if (linkId === entry.target.id) {
               if (prevSelected !== null) {
@@ -88,11 +91,18 @@ import MenuIcon from '../components/icons/MenuIcon.astro'
       threshold: 0.1,
     }
   )
-
-
-  
+  // Observa cada sección para detectar cuando entra en el viewport
   sections.forEach((section) => {
     observer.observe(section)
   })
-  
+</script>
+<script>
+  import gsap from 'gsap'
+
+  gsap.from('#header', {
+    y: -250,
+    duration: 1,
+    ease: 'elastic.out(1, 0.6),',
+    delay: 0.5,
+  })
 </script>
