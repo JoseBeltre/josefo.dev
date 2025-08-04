@@ -7,7 +7,7 @@ import ServiceCard from '../ServiceCard.astro'
 <section id="servicios">
   <div class="px-6 lg:px-0">
     <Badge
-      class="service-badge bg-secondary/20 text-secondary border-secondary inline-block"
+      class="service-badge bg-secondary/20 text-secondary border-secondary"
       >Servicios</Badge
     >
     <h2 class="service-title section-title">Lo que puedo construir para ti.</h2>
@@ -63,20 +63,12 @@ import ServiceCard from '../ServiceCard.astro'
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '#servicios',
-      start: 'top bottom',
+      start: 'top 80%',
       end: 'bottom top',
-      // markers: true,
       toggleActions: 'play none none none',
     },
   })
 
-  tl.from('.service-badge', {
-    rotate: 15,
-    yPercent: 200,
-    duration: 2,
-    opacity: 0,
-    ease: 'elastic.out',
-  })
   tl.from(splitTitle.words, {
     yPercent: 100,
     opacity: 0,
