@@ -54,13 +54,10 @@ import ServiceCard from '../ServiceCard.astro'
 <script>
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/all'
-  import { SplitText } from 'gsap/all'
 
-  gsap.registerPlugin(ScrollTrigger, SplitText)
+  gsap.registerPlugin(ScrollTrigger)
 
-  const splitTitle = SplitText.create('.service-title', { type: 'words' })
-
-  const tl = gsap.timeline({
+  gsap.timeline({
     scrollTrigger: {
       trigger: '#servicios',
       start: 'top 80%',
@@ -68,14 +65,7 @@ import ServiceCard from '../ServiceCard.astro'
       toggleActions: 'play none none none',
     },
   })
-
-  tl.from(splitTitle.words, {
-    yPercent: 100,
-    opacity: 0,
-    stagger: 0.1,
-    ease: 'power2.out'
-  }, "<")
-  tl.from('.service-card-wrapper', {
+  .from('.service-card-wrapper', {
     opacity: 0,
     xPercent: 200,
     rotate: 30,

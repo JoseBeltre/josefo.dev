@@ -1,7 +1,8 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { SplitText } from 'gsap/all'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, SplitText)
 
 const sections: string[] = [ 'servicios', 'proceso', 'portfolio', 'sobre-mi', 'contacto']
 
@@ -18,19 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
     return
   }
 
+  const title = section.querySelector('.section-title')
+  if (!title) {
+    console.warn('Titulo de la sección: ' + section + '. No encontrado.')
+    return
+  }
+  const splitTitle = SplitText.create(title, { type: 'words' })
 
-  gsap.from(badge, {
-    scrollTrigger: {
+  gsap.timeline({
+      scrollTrigger: {
       trigger: section,
       start: 'top 80%',
       end: 'bottom top',
       toggleActions: 'play none none none',
-    },
+    }
+  })
+  .from(badge, {
     rotate: 15,
     yPercent: 200,
     duration: 2,
     opacity: 0,
     ease: 'elastic.out',
   })
+  .from(splitTitle.words, {
+    yPercent: 100,
+    opacity: 0,
+    stagger: 0.1,
+    ease: 'power2.out'
+  }, "<")
 })
 })
