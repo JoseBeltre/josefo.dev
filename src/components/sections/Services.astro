@@ -6,14 +6,17 @@ import ServiceCard from '../ServiceCard.astro'
 
 <section id="servicios">
   <div class="px-6 lg:px-0">
-    <Badge class="bg-secondary/20 text-secondary border-secondary">Servicios</Badge>
-    <h2 class="section-title">Lo que puedo construir para ti.</h2>
+    <Badge
+      class="service-badge bg-secondary/20 text-secondary border-secondary inline-block"
+      >Servicios</Badge
+    >
+    <h2 class="service-title section-title">Lo que puedo construir para ti.</h2>
   </div>
   <div class="embla__services max-lg:overflow-hidden max-lg:max-w-full">
     <div class="embla__container__services flex lg:gap-4">
       {
         services.map((service, index) => (
-          <div class="max-lg:flex-[0_0_80%] max-lg:mx-2 flex-1">
+          <div class="service-card-wrapper ax-lg:flex-[0_0_80%] max-lg:mx-2 flex-1">
             <ServiceCard
               id={service.id}
               title={service.title}
@@ -41,10 +44,51 @@ import ServiceCard from '../ServiceCard.astro'
       loop: false,
       active: !isDesktop(),
       breakpoints: {
-        '(max-width: 1025px;)': { active: false }
-      }
+        '(max-width: 1025px;)': { active: false },
+      },
     }
 
     EmblaCarousel(emblaNode, emblaOptions)
   })
+</script>
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/all'
+  import { SplitText } from 'gsap/all'
+
+  gsap.registerPlugin(ScrollTrigger, SplitText)
+
+  const splitTitle = SplitText.create('.service-title', { type: 'words' })
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#servicios',
+      start: 'top bottom',
+      end: 'bottom top',
+      // markers: true,
+      toggleActions: 'play none none none',
+    },
+  })
+
+  tl.from('.service-badge', {
+    rotate: 15,
+    yPercent: 200,
+    duration: 2,
+    opacity: 0,
+    ease: 'elastic.out',
+  })
+  tl.from(splitTitle.words, {
+    yPercent: 100,
+    opacity: 0,
+    stagger: 0.1,
+    ease: 'power2.out'
+  }, "<")
+  tl.from('.service-card-wrapper', {
+    opacity: 0,
+    xPercent: 200,
+    rotate: 30,
+    ease: "elastic.inOut",
+    duration: 2,
+    stagger: 0.2,
+  }, "<")
 </script>
