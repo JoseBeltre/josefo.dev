@@ -9,7 +9,7 @@ import WorkflowStep from '../WorkflowStep.astro';
     Proceso
   </Badge>
   <h2 class="section-title">Así trabajaremos juntos</h2>
-  <div class="grid gap-3 lg:grid-cols-5 lg:gap-5">
+  <div class="steps-wrapper grid gap-3 lg:grid-cols-5 lg:gap-5">
   {
     workflow.map(step => 
       <WorkflowStep
@@ -21,3 +21,27 @@ import WorkflowStep from '../WorkflowStep.astro';
   }
   </div>
 </section>
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/all'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const stepsWrapper = document.querySelector('.steps-wrapper')
+  const articles = stepsWrapper?.querySelectorAll('article')
+
+
+  if (articles) {
+    gsap.from(articles, {
+    scrollTrigger: {
+      trigger: stepsWrapper,
+      start: 'top bottom',
+      end: 'bottom top',
+      toggleActions: 'play none none none',
+    },
+    scale: .2,
+    ease: 'back.inOut',
+    stagger: .1
+  })
+  }
+</script>
