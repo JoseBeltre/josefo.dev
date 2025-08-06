@@ -60,7 +60,7 @@ import ServiceCard from '../ServiceCard.astro'
   gsap.timeline({
     scrollTrigger: {
       trigger: '#servicios',
-      start: 'top 80%',
+      start: 'top bottom',
       end: 'bottom top',
       toggleActions: 'play none none none',
     },
@@ -72,5 +72,5 @@ import ServiceCard from '../ServiceCard.astro'
     ease: "elastic.inOut",
     duration: 2,
     stagger: 0.2,
-  }, "<")
+  })
 </script>
