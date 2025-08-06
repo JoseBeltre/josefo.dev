@@ -30,18 +30,36 @@ import WorkflowStep from '../WorkflowStep.astro';
   const stepsWrapper = document.querySelector('.steps-wrapper')
   const articles = stepsWrapper?.querySelectorAll('article')
 
+  const isMobile = () => window.innerWidth <= 765
+
 
   if (articles) {
-    gsap.from(articles, {
-    scrollTrigger: {
-      trigger: stepsWrapper,
-      start: 'top bottom',
-      end: 'bottom top',
-      toggleActions: 'play none none none',
-    },
-    scale: .2,
-    ease: 'back.inOut',
-    stagger: .1
-  })
+    if (isMobile()) {
+      articles.forEach(step => {
+        gsap.from(step, {
+          scrollTrigger: {
+            trigger: step,
+            start: 'top bottom',
+            end: 'bottom top',
+            toggleActions: 'play none none none',
+          },
+        scale: .2,
+        ease: 'power.inOut',
+        duration: .3
+        })
+      })
+    } else {
+      gsap.from(articles, {
+      scrollTrigger: {
+        trigger: stepsWrapper,
+        start: 'top bottom',
+        end: 'bottom top',
+        toggleActions: 'play none none none',
+      },
+      scale: .2,
+      ease: 'back.inOut',
+      stagger: .1
+      })
+    }
   }
 </script>
