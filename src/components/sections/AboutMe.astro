@@ -9,8 +9,8 @@ import Tag from '../Tag.astro'
     <Badge>Sobre mí</Badge>
     <h2 class="section-title" >¿Quién desarrolla tu producto?</h2>
     <p class="mb-2 -mt-4">
-      <Tag tag="span" class="text-secondary font-medium">
-        <span class="text-white font-normal"
+      <Tag tag="span" class="about-first-line text-secondary font-medium">
+        <span class=" text-white font-normal"
           >¡Hola 👋! Soy José, desarrollador web en la República Dominicana 🇩🇴.</span
         >
       </Tag>
@@ -37,8 +37,7 @@ import Tag from '../Tag.astro'
         <Tag tag="p" class="text-accent font-medium">
           <span class="text-white/80 font-normal"
             ><span class="text-highlight"
-              >Me encanta trabajar de la mano con mis clientes.</span
-            > Creo que la mejor forma de ofrecer un servicio de calidad es entendiendo
+              >Me encanta trabajar de la mano con mis clientes.</span> Creo que la mejor forma de ofrecer un servicio de calidad es entendiendo
             a fondo lo que la otra persona necesita, escuchando sus ideas, sus intereses
             y sus metas.</span
           >
@@ -62,7 +61,7 @@ import Tag from '../Tag.astro'
       class="text-end underline italic ms-auto w-auto block lg:hidden">Leer más...</button
     >
   </div>
-  <div class="mt-7 overflow-hidden rounded-2xl shadow-2xl lg:mt-0">
+  <div class="about-image mt-7 overflow-hidden rounded-2xl shadow-2xl lg:mt-0">
     <Image
       src="/jose-photo.webp"
       width={1920}
@@ -106,3 +105,39 @@ import Tag from '../Tag.astro'
     })
   </script>
 </section>
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/all'
+  import { SplitText } from 'gsap/all'
+  
+  gsap.registerPlugin(ScrollTrigger, SplitText)
+
+  const paragraphs = document.querySelectorAll('#sobre-mi p')
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '#sobre-mi',
+      start: 'top 80%',
+    }
+  })
+  .from(paragraphs, {
+    yPercent: 100,
+    opacity: 0,
+    stagger: 0.1,
+    ease: 'back.out',
+  })
+  .from('.about-image', {
+    xPercent: 100,
+    opacity: 0,
+    ease: 'elastic.out(1, 0.5)',
+    rotate: 20,
+    duration: 1.5,
+  }, '<')
+  .to('.about-image', {
+    y: -20,
+    repeat: -1,
+    yoyo: true,
+    duration: 2,
+    ease: 'power1.inOut',
+  }, '<')
+</script>
