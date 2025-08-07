@@ -243,3 +243,46 @@ import Badge from '../Badge.astro'
   window.onSubmit = onSubmit
   window.onRecaptchaLoad = onRecaptchaLoad
 </script>
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/all'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const formGrid = document.querySelector('#contact-form')
+  const inputs = formGrid?.querySelectorAll('div')
+
+  const isMobile = () => window.innerWidth <= 765
+
+
+  if (inputs) {
+    if (isMobile()) {
+      inputs.forEach(step => {
+        gsap.from(step, {
+          scrollTrigger: {
+            trigger: step,
+            start: 'top bottom',
+            end: 'bottom top',
+            toggleActions: 'play none none none',
+          },
+        scale: .2,
+        ease: 'power.inOut',
+        duration: .3
+        })
+      })
+    } else {
+      gsap.from(inputs, {
+      scrollTrigger: {
+        trigger: formGrid,
+        start: 'top bottom',
+        end: 'bottom top',
+        toggleActions: 'play none none none',
+      },
+      opacity: 0,
+      scale: 0,
+      ease: 'back.inOut',
+      stagger: .1
+      })
+    }
+  }
+</script>
