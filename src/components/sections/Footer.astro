@@ -39,9 +39,20 @@ import { Image } from 'astro:assets'
       >
     </div>
   </div>
-  <p class="text-sm mt-2 font-work-sans">Desarrollada con ❤️ por <span class="font-semibold">José Beltre</span>.</p>
+  <p class="text-sm mt-2 font-work-sans">Desarrollada con <span class="heart inline-block">❤️</span> por <span class="font-semibold">José Beltre</span>.</p>
   <p class="text-[10px] leading-3 text-white/70 mb-2 italic text-center">Este sitio está protegido por reCAPTCHA y la
     <a class="text-white underline" href="https://policies.google.com/privacy">Política de Privacidad</a> y los
     <a class="text-white underline" href="https://policies.google.com/terms">Términos de Servicio</a> de Google.
   </p>
 </footer>
+<script>
+  import { gsap } from 'gsap'
+
+  gsap.from('.heart', {
+    scale: 1.5,
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+  })
+
+</script>
