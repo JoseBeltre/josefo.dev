@@ -39,8 +39,7 @@ import WorkflowStep from '../WorkflowStep.astro';
         gsap.from(step, {
           scrollTrigger: {
             trigger: step,
-            start: 'top bottom',
-            end: 'bottom top',
+            start: 'top 80%',
             toggleActions: 'play none none none',
           },
         scale: .2,
@@ -53,7 +52,6 @@ import WorkflowStep from '../WorkflowStep.astro';
       scrollTrigger: {
         trigger: stepsWrapper,
         start: 'top bottom',
-        end: 'bottom top',
         toggleActions: 'play none none none',
       },
       opacity: 0,
