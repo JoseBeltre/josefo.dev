@@ -16,7 +16,7 @@ const isReversed = index % 2 === 0
 ---
 
 <article class:list={`flex gap-2 flex-col lg:gap-10 ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
-  <Carrousel images={images} textAlt=`${title}` />
+  <Carrousel images={images} textAlt={`${title}`} />
   <div class:list={[
     "px-6 flex-1/2 lg:px-0",
     { 'lg:text-end': !isReversed }

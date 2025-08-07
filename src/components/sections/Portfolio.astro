@@ -9,7 +9,7 @@ import ProjectCard from '../ProjectCard.astro'
     <Badge class="bg-secondary/20 text-secondary border-secondary">Portfolio</Badge>
     <h2 class="section-title">Así se ven mis proyectos</h2>
   </div>
-  <div class="grid gap-12 lg:gap-19">
+  <div class="projects-wrapper grid gap-12 lg:gap-19">
     {
       projects.map((project, index) => 
         <ProjectCard
@@ -24,3 +24,25 @@ import ProjectCard from '../ProjectCard.astro'
     }
   </div>
 </section>
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/all'
+  gsap.registerPlugin(ScrollTrigger)
+  const projectsWrapper = document.querySelector('.projects-wrapper')
+  const projectCards = projectsWrapper?.querySelectorAll('article')
+
+  projectCards?.forEach((projectCard) => {
+    gsap.from(projectCard, {
+      scrollTrigger: {
+        trigger: projectCard,
+        start: 'top 80%',
+      },
+      scale: 0,
+      opacity: 0,
+      duration: 1,
+      ease: 'elastic.out(1, 0.7)',
+    })
+  })
+
+
+</script>
